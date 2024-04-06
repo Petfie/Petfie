@@ -6,14 +6,7 @@ import * as Label from "@radix-ui/react-label";
 
 export const StepDone = () => {
   return (
-    <div className="w-[200px]">
-      <h1>완성된 야호 카드</h1>
-      <Image
-        src="/asset/완성카드.png"
-        alt="미리보기 이미지"
-        width={200}
-        height={200}
-      />
+    <div className="">
       <Button variant="outline">카드 다운로드</Button>
       <div className="flex flex-col">
         <Label.Root className="LabelRoot" htmlFor="공유하기">
