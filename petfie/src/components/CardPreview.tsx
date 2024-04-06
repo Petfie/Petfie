@@ -1,8 +1,14 @@
+import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@radix-ui/themes";
 import { UploadIcon } from "@radix-ui/react-icons";
 
-const makeTags = (tagArray: any, step: any) => {
+const makeTags = (personality: any, step: any) => {
+  if (!personality) return;
+  const tagArray = Object.keys(personality).filter(
+    (key) => personality[key] || personality[key] === "true"
+  );
+  console.log("123213213", tagArray);
   return tagArray.map((tag: any) => {
     return (
       <div
@@ -31,6 +37,8 @@ export const CardPreview = ({
   info,
 }: CardPreviewProps) => {
   const { name, age, gender, additionalInfo, personality } = info;
+
+  // const [tags, setTags] = useState(personality);
 
   return (
     <>
@@ -66,13 +74,15 @@ export const CardPreview = ({
           {step !== 0 && (
             <>
               {/* 펫 이름 */}
-              <div
-                className={`absolute top-[10%] left-[50%] translate-x-[-50%] max-w-[70%] text-white bg-black/40 backdrop-blur-sm p-2 rounded-3xl truncate text-ellipsis flex justify-center items-center ${
-                  step === 2 ? "text-lg" : "text-[0.8rem]"
-                }`}
-              >
-                {name}
-              </div>
+              {name && (
+                <div
+                  className={`absolute top-[10%] left-[50%] translate-x-[-50%] max-w-[70%] text-white bg-black/40 backdrop-blur-sm p-2 rounded-3xl truncate text-ellipsis flex justify-center items-center ${
+                    step === 2 ? "text-lg" : "text-[0.8rem]"
+                  }`}
+                >
+                  {name}
+                </div>
+              )}
               {/* 펫 정보 */}
               <div
                 className={`flex flex-col items-center justify-center absolute bottom-[10px] left-[50%] translate-x-[-50%] w-[90%] bg-black/40 text-white  rounded-lg ${
@@ -95,11 +105,11 @@ export const CardPreview = ({
                     </div>
                     <div>
                       <span className="mr-4">정보</span>
-                      {info}
+                      {additionalInfo}
                     </div>
                   </div>
                   <div className="w-full flex justify-between mt-2">
-                    <span className="mr-4">성격</span>
+                    <span className="mr-4 truncate">성격</span>
                     <div className="grow grid grid-cols-3 gap-1">
                       {makeTags(personality, step)}
                     </div>

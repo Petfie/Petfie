@@ -9,7 +9,7 @@ import { Info } from "@/components/InfoForm.types";
 
 export default function Step() {
   // step state
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   const increaseStep = () => {
     setStep((prevStep) => prevStep + 1);
@@ -28,7 +28,7 @@ export default function Step() {
     age: "",
     gender: "",
     additionalInfo: "",
-    personality: {},
+    personality: { 온순함: true },
   });
 
   useEffect(() => {
@@ -41,12 +41,6 @@ export default function Step() {
 
   return (
     <>
-      {/* Main layout */}
-      <div>
-        {step === 0 && <div>step 0 템플릿 선택 / 사진 업로드</div>}
-        {step === 1 && <InfoForm info={info} changeInfo={setInfo} />}
-        {step === 2 && <StepDone />}
-      </div>
       {/* Card Preview */}
       <div
         className={`w-full flex justify-center items-center min-h-[310px] rounded-lg ${
@@ -67,6 +61,12 @@ export default function Step() {
             />
           </div>
         }
+      </div>
+      {/* Main layout */}
+      <div>
+        {step === 0 && <div>step 0 템플릿 선택 / 사진 업로드</div>}
+        {step === 1 && <InfoForm info={info} changeInfo={setInfo} />}
+        {step === 2 && <StepDone />}
       </div>
 
       {/* Footer layout */}
