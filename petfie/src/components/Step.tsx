@@ -3,10 +3,11 @@
 import { Button } from "@radix-ui/themes";
 import { useState } from "react";
 import { StepDone } from "@/components/StepDone";
+import InfoForm from "./InfoForm";
 
 export default function Step0() {
   // step state
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
 
   const increaseStep = () => {
     setStep((prevStep) => prevStep + 1);
@@ -19,12 +20,30 @@ export default function Step0() {
     setStep(0);
   };
 
+  // Info Form State
+  export interface Info {
+    name: string;
+    age: string;
+    gender: string;
+    additionalInfo: string;
+    personality: {
+      [key: string]: boolean;
+    };
+  }
+  const [info, setInfo] = useState<Info>({
+    name: "",
+    age: "",
+    gender: "",
+    additionalInfo: "",
+    personality: {},
+  });
+
   return (
     <>
       {/* Main layout */}
       <div>
         {step === 0 && <div>step 0 템플릿 선택 / 사진 업로드</div>}
-        {step === 1 && <div>step 1 커스텀 하기 / 완성하기</div>}
+        {step === 1 && <InfoForm info={info} changeInfo={setInfo} />}
         {step === 2 && <StepDone />}
       </div>
       {/* Footer layout */}
