@@ -28,7 +28,7 @@ export default function Step() {
     age: "",
     gender: "",
     additionalInfo: "",
-    personality: { 온순함: true },
+    personality: {},
   });
 
   useEffect(() => {
