@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Button, TextField } from "@radix-ui/themes";
 import { CopyIcon } from "@radix-ui/react-icons";
 import * as Label from "@radix-ui/react-label";
 
 export const StepDone = () => {
+  // 공유하기 URL state
+  const [url, setUrl] = useState("http://~");
+
+  // copy
+  const copyLink = () => {
+    navigator.clipboard.writeText(url);
+    // TODO: add toast
+  };
+
   return (
     <div className="w-[200px]">
       <h1>완성된 야호 카드</h1>
@@ -20,13 +29,8 @@ export const StepDone = () => {
           공유하기
         </Label.Root>
         <div className="flex flex-row gap-1 justify-between">
-          <input
-            className="Input"
-            type="text"
-            id="copy"
-            defaultValue="http:~"
-          />
-          <CopyIcon className="flex" />
+          <input className="Input" type="text" id="copy" defaultValue={url} />
+          <CopyIcon onClick={copyLink} />
         </div>
       </div>
     </div>
