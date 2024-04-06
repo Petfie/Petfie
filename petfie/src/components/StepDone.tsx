@@ -26,7 +26,7 @@ export const StepDone = () => {
             id="copy"
             defaultValue="http:~"
           />
-          <CopyIcon />
+          <CopyIcon className="flex" />
         </div>
       </div>
     </div>
