@@ -1,12 +1,14 @@
 "use client";
 
 import { Button } from "@radix-ui/themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StepDone } from "@/components/StepDone";
+import InfoForm from "@/components/InfoForm";
+import { Info } from "@/components/InfoForm.types";
 
-export default function Step0() {
+export default function Step() {
   // step state
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
 
   const increaseStep = () => {
     setStep((prevStep) => prevStep + 1);
@@ -19,12 +21,25 @@ export default function Step0() {
     setStep(0);
   };
 
+  // Info state
+  const [info, setInfo] = useState<Info>({
+    name: "",
+    age: "",
+    gender: "",
+    additionalInfo: "",
+    personality: {},
+  });
+
+  useEffect(() => {
+    console.log("info", info);
+  }, [info]);
+
   return (
     <>
       {/* Main layout */}
       <div>
         {step === 0 && <div>step 0 템플릿 선택 / 사진 업로드</div>}
-        {step === 1 && <div>step 1 커스텀 하기 / 완성하기</div>}
+        {step === 1 && <InfoForm info={info} changeInfo={setInfo} />}
         {step === 2 && <StepDone />}
       </div>
       {/* Footer layout */}
