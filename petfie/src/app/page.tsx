@@ -1,10 +1,5 @@
-import Step from "@/components/Step";
-import Carousel from "./features/Carousel";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-      <>
-        <Carousel/>
-      </>
-    )
+  redirect("/intro");
 }
