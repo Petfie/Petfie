@@ -52,7 +52,7 @@ export default function InfoForm({ info, changeInfo }: Props) {
 
   return (
     <>
-      <form>
+      <form className="info_form">
         <p>반려동물의 이름</p>
         <input
           name="name"

@@ -19,7 +19,7 @@ export default function Intro() {
   };
 
   return (
-    <>
+    <div className="p-[20px] min-h-[100dvh]">
       <div className="title-cont">
         <h1>
           <Image
@@ -30,7 +30,6 @@ export default function Intro() {
           />
         </h1>
         <QuestionMarkCircledIcon
-          className="modalBtn"
           width={32} 
           height={32} 
           onClick={handleIconClick}
@@ -50,6 +49,6 @@ export default function Intro() {
         </Link>
       </div>
       <Modal isOpen={modalOpen} onClose={handleCloseModal} />
-    </>
+    </div>
   );
 }
