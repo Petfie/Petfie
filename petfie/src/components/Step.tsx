@@ -62,7 +62,7 @@ export default function Step() {
     } catch (err) {
       console.log(err);
     }
-  };
+  }; 
 
   return (
     <>
@@ -98,18 +98,24 @@ export default function Step() {
       </div>
 
       {/* Footer layout */}
-      {step === 1 && <Button onClick={decreaseStep}>이전</Button>}
-      {step !== 2 && <Button onClick={increaseStep}>다음</Button>}
-      {step === 2 && (
-        <>
-          <button
-            className="gap-2 bottom-0 w-full mt-24 rounded-md bg-white border border-brand-orange-500 px-2 py-3 text-brand-orange-600"
-            onClick={goToFirstStep}
-          >
-            다른 카드 만들러 가기
-          </button>
-        </>
-      )}
-    </>
-  );
-}
+      <div className="button-cont">
+        {step === 0 && (
+          <>
+            <button onClick={increaseStep} className="button-next">다음 단계</button>
+          </>
+        )}
+        {step === 1 && (
+          <>
+            <button onClick={decreaseStep} className="button-prev">이전 단계</button>
+            <button onClick={increaseStep} className="button-next">다음 단계</button>
+          </>
+        )}
+        {step === 2 && (
+          <>
+            <button  onClick={goToFirstStep} className="button-border">다른 카드 만들러 가기</button>
+          </>
+        )}
+      </div>
+      </>
+    );
+  }
