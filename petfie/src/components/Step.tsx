@@ -6,6 +6,7 @@ import { StepDone } from "@/components/StepDone";
 import { CardPreview } from "@/components/CardPreview";
 import InfoForm from "@/components/InfoForm";
 import { Info } from "@/components/InfoForm.types";
+import Carousel from "@/features/Carousel";
 
 export default function Step() {
   // step state
@@ -35,10 +36,9 @@ export default function Step() {
     console.log("info", info);
   }, [info]);
 
-  // TODO: 제거하기
   // 카드 미리보기 state
   const [imgUrl, setImgUrl] = useState("/asset/animal2.jpg");
-  const [frameUrl, setFrameUrl] = useState("/asset/frame6.png");
+  const [frameUrl, setFrameUrl] = useState("/asset/카드프레임1.svg");
 
   return (
     <>
@@ -65,7 +65,7 @@ export default function Step() {
       </div>
       {/* Main layout */}
       <div>
-        {step === 0 && <div>step 0 템플릿 선택 / 사진 업로드</div>}
+        {step === 0 && <Carousel changeFrame={setFrameUrl} />}
         {step === 1 && <InfoForm info={info} changeInfo={setInfo} />}
         {step === 2 && <StepDone />}
       </div>
