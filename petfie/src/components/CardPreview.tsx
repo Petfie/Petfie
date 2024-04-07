@@ -93,9 +93,9 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                           <span className="mr-4">나이</span>
                           {age}
                         </div>
-                        <div className="mr-2">
+                        <div className="mr-1 min-w-[50px]">
                           <span className="mr-4">성별</span>
-                          {gender}
+                          <span className="">{gender}</span>
                         </div>
                       </div>
                       <div>
