@@ -1,14 +1,17 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import React, { useState } from "react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import Image from "next/image";
-import { EffectCoverflow } from 'swiper/modules';
+import { EffectCoverflow } from "swiper/modules";
 
-export default function Carousel() {
-  const [swiper, setSwiper] = useState<SwiperClass>();
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+interface Props {
+  changeFrame: (frameUrl: string) => void;
+}
+export default function Carousel({ changeFrame }: Props) {
+  // const [swiper, setSwiper] = useState<SwiperClass>();
+  // const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   const images = [
     "/asset/카드프레임1.svg",
@@ -20,13 +23,14 @@ export default function Carousel() {
   ];
 
   const handleSlideChange = (swiper: SwiperClass) => {
-    console.log('현재 활성 슬라이드의 인덱스:', swiper.realIndex);
-    setActiveSlideIndex(swiper.realIndex);
+    console.log("현재 활성 슬라이드의 인덱스:", swiper.realIndex);
+    // setActiveSlideIndex(swiper.realIndex);
+    changeFrame(images[swiper.realIndex]);
   };
-  
+
   return (
     <Swiper
-      effect={'coverflow'}
+      effect={"coverflow"}
       slidesPerView={3}
       spaceBetween={5}
       navigation={true}
@@ -39,7 +43,7 @@ export default function Carousel() {
         stretch: 0,
         depth: 120,
         modifier: 1,
-        slideShadows: false
+        slideShadows: false,
       }}
       modules={[EffectCoverflow]}
     >
@@ -50,7 +54,7 @@ export default function Carousel() {
             alt={`카드프레임 ${index + 1}`}
             width={106}
             height={152}
-            className='mt-[50px]'
+            className="mt-[50px]"
             priority={false}
           />
         </SwiperSlide>
@@ -58,4 +62,3 @@ export default function Carousel() {
     </Swiper>
   );
 }
-

@@ -1,13 +1,14 @@
 @font-face {
-  font-family: 'GmarketSansMedium';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 body {
   min-height: 100dvh;
-  font-family: 'GmarketSansMedium';
+  font-family: "GmarketSansMedium";
   background: #fff !important;
   padding: 20px;
 }
@@ -72,16 +73,16 @@ body {
 }
 .button-prev {
   color: #fff;
-  background: #A3A3A3;
+  background: #a3a3a3;
 }
 
 .button-next {
   color: #fff;
-background: #F97316;
+  background: #f97316;
 }
 
 .button-border {
-  color: #EA580C;
+  color: #ea580c;
   color: EA580C;
-  border: #F97316;
+  border: #f97316;
 }
