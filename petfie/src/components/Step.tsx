@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@radix-ui/themes";
 import { useEffect, useRef, useState } from "react";
 import { StepDone } from "@/components/StepDone";
 import { CardPreview } from "@/components/CardPreview";
@@ -31,7 +30,6 @@ export default function Step() {
   const [info, setInfo] = useState<Info>({
     name: "",
     age: "",
-    gender: "",
     additionalInfo: "",
     personality: {},
   });
@@ -71,9 +69,7 @@ export default function Step() {
       {/* Card Preview */}
       <h1 className="my-2">{step === 2 ? "완성된 카드" : "카드 미리보기"}</h1>
       <div
-        className={`w-full flex justify-center items-center min-h-[310px] rounded-lg mb-6 ${
-          step !== 2 && "bg-black"
-        }`}
+        className={`w-full flex justify-center items-center min-h-[310px] rounded-lg mb-6`}
       >
         {
           <div
@@ -84,7 +80,6 @@ export default function Step() {
             <CardPreview
               ref={captureAreaRef}
               step={step}
-              imgUrl={imgUrl}
               frameUrl={frameUrl}
               info={info}
             />
