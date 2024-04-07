@@ -30,7 +30,6 @@ export default function Step() {
   const [info, setInfo] = useState<Info>({
     name: "",
     age: "",
-    gender: "",
     additionalInfo: "",
     personality: {},
   });
@@ -81,7 +80,6 @@ export default function Step() {
             <CardPreview
               ref={captureAreaRef}
               step={step}
-              imgUrl={imgUrl}
               frameUrl={frameUrl}
               info={info}
             />
