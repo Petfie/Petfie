@@ -71,9 +71,7 @@ export default function Step() {
       {/* Card Preview */}
       <h1 className="my-2">{step === 2 ? "완성된 카드" : "카드 미리보기"}</h1>
       <div
-        className={`w-full flex justify-center items-center min-h-[310px] rounded-lg mb-6 ${
-          step !== 2 && "bg-black"
-        }`}
+        className={`w-full flex justify-center items-center min-h-[310px] rounded-lg mb-6`}
       >
         {
           <div
@@ -119,17 +117,8 @@ export default function Step() {
         )}
         {step === 1 && (
           <>
-<<<<<<< Updated upstream
-            <button onClick={decreaseStep} className="button-prev">
-              이전 단계
-            </button>
-            <button onClick={increaseStep} className="button-next">
-              다음 단계
-            </button>
-=======
             <button  onClick={decreaseStep} className="button-prev">이전 단계</button>
             <button onClick={increaseStep} className="button-next">다음 단계</button>
->>>>>>> Stashed changes
           </>
         )}
         {step === 2 && (

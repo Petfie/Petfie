@@ -97,5 +97,5 @@ body {
 .button-border {
   color: #ea580c;
   color: EA580C;
-  border: #f97316;
+  border: #f97316 1px solid;
 }
