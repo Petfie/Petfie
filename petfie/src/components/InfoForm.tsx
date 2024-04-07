@@ -1,58 +1,59 @@
 "use client";
 
 import { Info } from "@/components/InfoForm.types";
+import { forwardRef, useState } from "react";
 
 interface Props {
   info: Info;
   changeInfo: (info: Info) => void;
 }
-export default function InfoForm({ info, changeInfo }: Props) {
-  const personality = {
-    active: "활발함",
-    shy: "소심함",
-    affectionate: "애교쟁이",
-    "dog-like": "개냥이",
-    sensitive: "예민함",
-    sleeper: "잠꾸러기",
-    foodie: "먹보",
-    lazy: "베짱이",
-    scaredy: "겁쟁이",
-    independent: "독립적",
-    explorer: "탐험가",
-    bulldozer: "불도저",
-    nocturnal: "야행성",
-    "walk-lover": "산책왕",
-  };
+const InfoForm = forwardRef<HTMLFormElement, Props>(
+  ({ info, changeInfo }, ref) => {
+    const personality = {
+      active: "활발함",
+      shy: "소심함",
+      affectionate: "애교쟁이",
+      "dog-like": "개냥이",
+      sensitive: "예민함",
+      sleeper: "잠꾸러기",
+      foodie: "먹보",
+      lazy: "베짱이",
+      scaredy: "겁쟁이",
+      independent: "독립적",
+      explorer: "탐험가",
+      bulldozer: "불도저",
+      nocturnal: "야행성",
+      "walk-lover": "산책왕",
+    };
 
-  const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeInfo({ ...info, name: e.target.value });
-  };
+    const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+      changeInfo({ ...info, name: e.target.value });
+    };
 
-  const changeAge = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeInfo({ ...info, age: e.target.value });
-  };
+    const changeAge = (e: React.ChangeEvent<HTMLInputElement>) => {
+      changeInfo({ ...info, age: e.target.value });
+    };
 
-  const selectGender = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLInputElement;
-    changeInfo({ ...info, gender: target.value as "수컷" | "암컷" | "비밀" });
-  };
+    const selectGender = (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLInputElement;
+      changeInfo({ ...info, gender: target.value as "수컷" | "암컷" | "비밀" });
+    };
 
-  const changeAdditionalInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeInfo({ ...info, additionalInfo: e.target.value });
-  };
+    const changeAdditionalInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
+      changeInfo({ ...info, additionalInfo: e.target.value });
+    };
 
-  const selectPersonality = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLInputElement;
-    console.log("target", target.id);
-    changeInfo({
-      ...info,
-      personality: { ...info.personality, [target.id]: target.checked },
-    });
-  };
+    const selectPersonality = (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLInputElement;
+      console.log("target", target.id);
+      changeInfo({
+        ...info,
+        personality: { ...info.personality, [target.id]: target.checked },
+      });
+    };
 
-  return (
-    <>
-      <form className="info_form">
+    return (
+      <form className="info_form" ref={ref} id="info-form">
         <p>반려동물의 이름</p>
         <input
           name="name"
@@ -118,6 +119,9 @@ export default function InfoForm({ info, changeInfo }: Props) {
           ))}
         </ul>
       </form>
-    </>
-  );
-}
+    );
+  }
+);
+InfoForm.displayName = "InfoForm";
+
+export default InfoForm;

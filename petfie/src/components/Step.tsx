@@ -35,9 +35,14 @@ export default function Step() {
     personality: {},
   });
 
-  useEffect(() => {
-    console.log("info", info);
-  }, [info]);
+  // form
+  const infoFormRef = useRef<HTMLFormElement>(null);
+  const submitForm = () => {
+    // 유효성이 통과되면 다음 단계로 이동
+    if (infoFormRef.current?.checkValidity()) {
+      increaseStep();
+    }
+  };
 
   // 카드 미리보기 state
   const [imgUrl, setImgUrl] = useState("/asset/animal2.jpg");
@@ -93,7 +98,7 @@ export default function Step() {
         {step === 1 && (
           <div>
             <h1 className="my-2">정보 입력하기</h1>
-            <InfoForm info={info} changeInfo={setInfo} />
+            <InfoForm ref={infoFormRef} info={info} changeInfo={setInfo} />
           </div>
         )}
         {step === 2 && <StepDone saveAsImage={saveAsImage} />}
@@ -113,7 +118,12 @@ export default function Step() {
             <button onClick={decreaseStep} className="button-prev">
               이전 단계
             </button>
-            <button onClick={increaseStep} className="button-next">
+            <button
+              type="submit"
+              form="info-form"
+              onClick={submitForm}
+              className="button-next"
+            >
               다음 단계
             </button>
           </>
