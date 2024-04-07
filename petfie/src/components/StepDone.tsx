@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "@radix-ui/themes";
-import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
+import { CheckIcon, CopyIcon, DownloadIcon } from "@radix-ui/react-icons";
 import * as Label from "@radix-ui/react-label";
 
 interface StepDoneProps {
@@ -21,17 +21,28 @@ export const StepDone = ({ saveAsImage }: StepDoneProps) => {
   };
 
   return (
-    <div className="">
-      <Button variant="outline" onClick={saveAsImage}>
+    <div className="flex flex-col items-center pt-5 gap-5">
+      <button
+        className="flex items-center justify-center gap-2 w-full rounded-md bg-brand-orange-500 px-2 py-3 text-white"
+        onClick={saveAsImage}
+      >
+        <DownloadIcon />
         카드 다운로드
-      </Button>
-      <div className="flex flex-col">
-        <Label.Root className="LabelRoot" htmlFor="공유하기">
+      </button>
+      <div className="flex flex-col w-full">
+        <label className="text-sm mb-2" htmlFor="copy">
           공유하기
-        </Label.Root>
+        </label>
         <div className="flex gap-2 items-center">
-          <input className="Input" type="text" id="copy" defaultValue={url} />
-          {isCopied ? <CheckIcon /> : <CopyIcon onClick={copyLink} />}
+          <input
+            className="w-full border border-neutral-300 p-[0.55rem] text-sm rounded-md"
+            type="text"
+            id="copy"
+            defaultValue={url}
+          />
+          <div className="border border-neutral-300 p-3 rounded-md">
+            {isCopied ? <CheckIcon /> : <CopyIcon onClick={copyLink} />}
+          </div>
         </div>
       </div>
     </div>

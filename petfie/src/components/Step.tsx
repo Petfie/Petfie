@@ -102,7 +102,12 @@ export default function Step() {
       {step !== 2 && <Button onClick={increaseStep}>다음</Button>}
       {step === 2 && (
         <>
-          <Button onClick={goToFirstStep}>다른 카드 만들러 가기</Button>
+          <button
+            className="gap-2 bottom-0 w-full mt-24 rounded-md bg-white border border-brand-orange-500 px-2 py-3 text-brand-orange-600"
+            onClick={goToFirstStep}
+          >
+            다른 카드 만들러 가기
+          </button>
         </>
       )}
     </>
