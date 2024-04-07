@@ -171,12 +171,16 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
             <ul className="flex flex-wrap gap-x-7 gap-y-5">
               {Object.entries(personality).map(([_, value], idx) => (
                 <li key={idx} className="flex gap-x-2 items-center">
-                  <input
-                    type="checkbox"
-                    id={value}
-                    onClick={selectPersonality}
-                  />
-                  <label htmlFor={value}>{value}</label>
+                  <label htmlFor={value} className="personality_checkbox">
+                    <input
+                      type="checkbox"
+                      id={value}
+                      onClick={selectPersonality}
+                      hidden
+                    />
+                    <span className="checkmark"></span>
+                      {value}
+                  </label>
                 </li>
               ))}
             </ul>

@@ -34,3 +34,35 @@ h1 {
 .swiper-slide {
   display: flex !important;
 }
+
+.personality_checkbox {
+  display: flex;
+  align-items: center;
+}
+.personality_checkbox input[type="checkbox"] {
+  display: none;
+}
+.checkmark {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 1px solid #404040;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+.personality_checkbox input:checked + .checkmark {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ea580c;
+  border: none;
+}
+.personality_checkbox input:checked + .checkmark::after {
+  content: "";
+  display: block;
+  width: 13.33px;
+  height: 9.17px;
+  background: center no-repeat url(/asset/check.png);
+  background-size: contain;
+}
