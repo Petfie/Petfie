@@ -8,7 +8,7 @@ import { Info } from "@/components/InfoForm.types";
 import Carousel from "@/features/Carousel";
 import { toPng } from "html-to-image";
 import StepProgress from "@/components/StepProgress";
-import './step.css';
+import "./step.css";
 
 export default function Step() {
   // step list
@@ -25,6 +25,13 @@ export default function Step() {
 
   const goToFirstStep = () => {
     setStep(0);
+    resetCardState();
+  };
+
+  const resetCardState = () => {
+    setInfo({ name: "", age: "", additionalInfo: "", personality: {} });
+    setFrameUrl("/asset/카드프레임1.svg");
+    captureAreaRef?.current?.resetUploadedImg();
   };
 
   // Info state
@@ -40,11 +47,10 @@ export default function Step() {
   }, [info]);
 
   // 카드 미리보기 state
-  const [imgUrl, setImgUrl] = useState("/asset/animal2.jpg");
   const [frameUrl, setFrameUrl] = useState("/asset/카드프레임1.svg");
 
   // DOM 캡처(이미지 저장) 위한 카드 div 선택
-  const captureAreaRef = useRef<HTMLDivElement>(null);
+  const captureAreaRef = useRef<HTMLDivElement | any>(null);
 
   const saveAsImage = async () => {
     if (captureAreaRef.current === null) return;

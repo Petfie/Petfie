@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useState, useImperativeHandle, RefObject } from "react";
 import Image from "next/image";
 import ImageUpload from "@/components/ImageUpload";
 
@@ -19,9 +19,9 @@ const makeTags = (personality: { [key: string]: boolean }, step: number) => {
   });
 };
 
-// type Info = {
-//   gender: "수컷" | "암컷" | "비밀";
-// };
+export interface ChildMethods {
+  resetUploadedImg: () => void;
+}
 
 interface CardPreviewProps {
   step: number;
@@ -48,6 +48,15 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
 
     // image data
     const [imageData, setImageData] = useState<string>();
+
+    useImperativeHandle(ref as RefObject<ChildMethods>, () => ({
+      resetUploadedImg,
+    }));
+
+    const resetUploadedImg = () => {
+      setImageData("");
+      console.log("here!");
+    };
 
     return (
       <>
