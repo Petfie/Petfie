@@ -23,7 +23,10 @@ export default function StepProgress({ currentStep, stepList }: Props) {
     <div className="border-2 rounded mb-6">
       <div className="grid grid-cols-3 px-8 py-3 text-xs">
         {stepList.map((step, index) => (
-          <div className="flex flex-col items-center gap-2" key={index}>
+          <div
+            className="flex flex-col items-center gap-2 truncate"
+            key={index}
+          >
             {/* isStepCompleted 가 -1 인 경우 */}
             {isStepCompleted(index, currentStep) === -1 && (
               <div className="w-4 h-4 rounded-full flex justify-center items-center bg-orange-600">
