@@ -62,15 +62,16 @@ export default function Step() {
     } catch (err) {
       console.log(err);
     }
-  }; 
+  };
 
   return (
     <>
       {/* Step Progress */}
       <StepProgress currentStep={step} stepList={stepList} />
       {/* Card Preview */}
+      <h1 className="my-2">{step === 2 ? "완성된 카드" : "카드 미리보기"}</h1>
       <div
-        className={`w-full flex justify-center items-center min-h-[310px] rounded-lg ${
+        className={`w-full flex justify-center items-center min-h-[310px] rounded-lg mb-6 ${
           step !== 2 && "bg-black"
         }`}
       >
@@ -92,8 +93,18 @@ export default function Step() {
       </div>
       {/* Main layout */}
       <div>
-        {step === 0 && <Carousel changeFrame={setFrameUrl} />}
-        {step === 1 && <InfoForm info={info} changeInfo={setInfo} />}
+        {step === 0 && (
+          <div>
+            <h1 className="my-2">프레임 고르기</h1>
+            <Carousel changeFrame={setFrameUrl} />
+          </div>
+        )}
+        {step === 1 && (
+          <div>
+            <h1 className="my-2">정보 입력하기</h1>
+            <InfoForm info={info} changeInfo={setInfo} />
+          </div>
+        )}
         {step === 2 && <StepDone saveAsImage={saveAsImage} />}
       </div>
 
@@ -101,21 +112,29 @@ export default function Step() {
       <div className="button-cont">
         {step === 0 && (
           <>
-            <button onClick={increaseStep} className="button-next">다음 단계</button>
+            <button onClick={increaseStep} className="button-next">
+              다음 단계
+            </button>
           </>
         )}
         {step === 1 && (
           <>
-            <button onClick={decreaseStep} className="button-prev">이전 단계</button>
-            <button onClick={increaseStep} className="button-next">다음 단계</button>
+            <button onClick={decreaseStep} className="button-prev">
+              이전 단계
+            </button>
+            <button onClick={increaseStep} className="button-next">
+              다음 단계
+            </button>
           </>
         )}
         {step === 2 && (
           <>
-            <button  onClick={goToFirstStep} className="button-border">다른 카드 만들러 가기</button>
+            <button onClick={goToFirstStep} className="button-border">
+              다른 카드 만들러 가기
+            </button>
           </>
         )}
       </div>
-      </>
-    );
-  }
+    </>
+  );
+}

@@ -50,7 +50,6 @@ export default function InfoForm({ info, changeInfo }: Props) {
 
   return (
     <>
-      <h2>정보 입력</h2>
       <form>
         <p>반려동물의 이름</p>
         <input

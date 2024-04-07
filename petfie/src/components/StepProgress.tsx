@@ -20,25 +20,31 @@ export default function StepProgress({ currentStep, stepList }: Props) {
   };
 
   return (
-    <div className="border-2 rounded">
-      <div className="flex flex-row justify-between px-8 py-4">
+    <div className="border-2 rounded mb-6">
+      <div className="grid grid-cols-3 px-8 py-3 text-xs">
         {stepList.map((step, index) => (
-          <div className="flex flex-col items-center gap-1" key={index}>
+          <div className="flex flex-col items-center gap-2" key={index}>
             {/* isStepCompleted 가 -1 인 경우 */}
             {isStepCompleted(index, currentStep) === -1 && (
-              <div className="w-4 h-4 rounded-full bg-blue-500">
-                <CheckIcon />
+              <div className="w-4 h-4 rounded-full flex justify-center items-center bg-orange-600">
+                <CheckIcon color="white" />
               </div>
             )}
             {/* isStepCompleted 가 0 인 경우 */}
             {isStepCompleted(index, currentStep) === 0 && (
-              <div className="w-4 h-4 rounded-full bg-blue-500" />
+              <div className="w-4 h-4 rounded-full bg-orange-600" />
             )}
             {/* isStepCompleted 가 1 인 경우 */}
             {isStepCompleted(index, currentStep) === 1 && (
               <div className="w-4 h-4 rounded-full bg-gray-300" />
             )}
-            {step}
+            <span
+              className={
+                currentStep < index ? "text-gray-300" : "text-orange-600"
+              }
+            >
+              {step}
+            </span>
           </div>
         ))}
       </div>
