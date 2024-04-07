@@ -39,8 +39,12 @@ export const StepDone = ({ saveAsImage }: StepDoneProps) => {
             id="copy"
             defaultValue={url}
           />
-          <div className="border border-neutral-300 p-3 rounded-md">
-            {isCopied ? <CheckIcon /> : <CopyIcon onClick={copyLink} />}
+          <div className="bg-white border border-neutral-300 p-3 rounded-md">
+            {isCopied ? (
+              <CheckIcon className="text-green-500" />
+            ) : (
+              <CopyIcon onClick={copyLink} className="text-brand-orange-500" />
+            )}
           </div>
         </div>
       </div>
