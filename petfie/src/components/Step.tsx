@@ -122,7 +122,12 @@ export default function Step() {
       <div className="button-cont">
         {step === 0 && (
           <>
-            <button onClick={increaseStep} className="button-next">
+            <button
+              onClick={increaseStep}
+              className={
+                imgUrl ? "button-next" : "button-prev pointer-events-none"
+              }
+            >
               다음 단계
             </button>
           </>
