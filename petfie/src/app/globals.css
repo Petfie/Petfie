@@ -53,6 +53,7 @@ body {
 
 .swiper-slide {
   display: flex !important;
+  justify-content: center;
 }
 
 .button-cont {

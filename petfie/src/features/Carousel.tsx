@@ -14,12 +14,18 @@ export default function Carousel({ changeFrame }: Props) {
   // const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   const images = [
-    "/asset/카드프레임1.svg",
-    "/asset/카드프레임2.svg",
-    "/asset/카드프레임3.svg",
-    "/asset/카드프레임4.svg",
-    "/asset/카드프레임5.svg",
-    "/asset/카드프레임6.svg",
+    "/asset/Bframe1.svg",
+    "/asset/Wframe1.svg",
+    "/asset/Bframe2.svg",
+    "/asset/Wframe2.svg",
+    "/asset/Bframe3.svg",
+    "/asset/Wframe3.svg",
+    "/asset/Bframe4.svg",
+    "/asset/Wframe4.svg",
+    "/asset/Bframe5.svg",
+    "/asset/Wframe5.svg",
+    "/asset/Bframe6.svg",
+    "/asset/Wframe6.svg",
   ];
 
   const handleSlideChange = (swiper: SwiperClass) => {
@@ -46,6 +52,15 @@ export default function Carousel({ changeFrame }: Props) {
         slideShadows: false,
       }}
       modules={[EffectCoverflow]}
+      breakpoints={{
+        750: {
+          slidesPerView: 4,
+          spaceBetween: 10,
+          coverflowEffect: {
+            rotate: 30,
+          }
+        },
+      }}
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
