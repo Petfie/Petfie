@@ -106,17 +106,17 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                           <span className="mr-4">나이</span>
                           {age}
                         </div>
-                        <div className="mr-1 min-w-[50px]">
+                        <div className="mr-1 min-w-[50px] flex relative">
                           <span className="mr-4">성별</span>
-                          <div className="">
-                            {genderIconSrc && (
-                              <Image
-                                alt={gender || "아이콘"}
-                                src={genderIconSrc}
-                                fill
-                              />
-                            )}
-                          </div>
+                          {genderIconSrc && (
+                            <Image
+                              alt={gender || "아이콘"}
+                              src={genderIconSrc}
+                              width={step === 2 ? 11 : 7}
+                              height={step === 2 ? 11 : 7}
+                              className="relative bottom-[1px]"
+                            />
+                          )}
                         </div>
                       </div>
                       <div>
