@@ -48,7 +48,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
       <>
         {
           <div
-            className="relative bg-gray-300 w-full h-full rounded-lg"
+            className="card_preview relative w-full h-full rounded-lg"
             ref={ref}
           >
             {/* 유저가 업로드한 펫 이미지 */}
