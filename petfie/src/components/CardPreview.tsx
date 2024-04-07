@@ -2,6 +2,16 @@ import { forwardRef, useState } from "react";
 import Image from "next/image";
 import ImageUpload from "@/components/ImageUpload";
 
+const genderMap = {
+  수컷: "/asset/male-icon.svg",
+  암컷: "/asset/female-icon.svg",
+  비밀: "/asset/neuter-icon.svg",
+};
+
+const genderIcon = (gender) => {
+  return;
+};
+
 const makeTags = (personality: any, step: any) => {
   if (!personality) return;
   const tagArray = Object.keys(personality).filter(
@@ -21,18 +31,21 @@ const makeTags = (personality: any, step: any) => {
   });
 };
 
+type Info = {
+  gender: "수컷" | "암컷" | "비밀";
+};
+
 interface CardPreviewProps {
   step: number;
   imgUrl: string;
   frameUrl: string;
-  info: any;
+  info: Info;
 }
 
 export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
   ({ step, imgUrl, frameUrl, info }, ref) => {
     const { name, age, gender, additionalInfo, personality } = info;
-
-    // const [tags, setTags] = useState(personality);
+    const genderIconSrc = genderMap[gender];
 
     // image data
     const [imageData, setImageData] = useState<string>();
@@ -95,7 +108,15 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                         </div>
                         <div className="mr-1 min-w-[50px]">
                           <span className="mr-4">성별</span>
-                          <span className="">{gender}</span>
+                          <div className="">
+                            {genderIconSrc && (
+                              <Image
+                                alt={gender || "아이콘"}
+                                src={genderIconSrc}
+                                fill
+                              />
+                            )}
+                          </div>
                         </div>
                       </div>
                       <div>
