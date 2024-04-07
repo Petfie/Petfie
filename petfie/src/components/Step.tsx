@@ -9,7 +9,7 @@ import { Info } from "@/components/InfoForm.types";
 
 export default function Step() {
   // step state
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   const increaseStep = () => {
     setStep((prevStep) => prevStep + 1);
