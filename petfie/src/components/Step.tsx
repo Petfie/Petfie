@@ -8,8 +8,11 @@ import InfoForm from "@/components/InfoForm";
 import { Info } from "@/components/InfoForm.types";
 import Carousel from "@/features/Carousel";
 import { toPng } from "html-to-image";
+import StepProgress from "@/components/StepProgress";
 
 export default function Step() {
+  // step list
+  const stepList = ["사진/프레임 선택", "정보 입력", "완성"];
   // step state
   const [step, setStep] = useState(0);
 
@@ -63,6 +66,8 @@ export default function Step() {
 
   return (
     <>
+      {/* Step Progress */}
+      <StepProgress currentStep={step} stepList={stepList} />
       {/* Card Preview */}
       <div
         className={`w-full flex justify-center items-center min-h-[310px] rounded-lg ${
