@@ -25,11 +25,7 @@ export const StepDone = ({ saveAsImage }: StepDoneProps) => {
         className="flex items-center justify-center gap-2 w-full rounded-md bg-brand-orange-500 px-2 py-3 text-white"
         onClick={saveAsImage}
       >
-        <DownloadIcon 
-        width={200}
-        height={200}
-        className="w-[200px] h-[200px]"
-        />
+        <DownloadIcon width={20} height={20} />
         카드 다운로드
       </button>
       <div className="flex flex-col w-full">
