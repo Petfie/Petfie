@@ -41,6 +41,7 @@ export default function InfoForm({ info, changeInfo }: Props) {
 
   const selectPersonality = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLInputElement;
+    console.log("target", target.id);
     changeInfo({
       ...info,
       personality: { ...info.personality, [target.id]: target.checked },
@@ -107,11 +108,11 @@ export default function InfoForm({ info, changeInfo }: Props) {
             <li key={idx}>
               <input
                 type="checkbox"
-                id={key}
+                id={value}
                 required
                 onClick={selectPersonality}
               />
-              <label htmlFor={key}>{value}</label>
+              <label htmlFor={value}>{value}</label>
             </li>
           ))}
         </ul>
