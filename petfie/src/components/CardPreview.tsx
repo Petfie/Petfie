@@ -80,13 +80,13 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 )}
                 {/* 펫 정보 */}
                 <div
-                  className={`flex flex-col items-center justify-center absolute bottom-[10px] left-[50%] translate-x-[-50%] w-[90%] bg-black/40 text-white  rounded-lg ${
+                  className={`flex flex-col items-center justify-center absolute bottom-[10px] left-[50%] translate-x-[-50%] w-[90%] bg-black/40 text-white rounded-lg backdrop-blur-sm ${
                     step === 2
                       ? "min-h-[124px] text-xs"
                       : "min-h-[80px] text-[0.5rem]"
                   }`}
                 >
-                  <div className="w-full h-full backdrop-blur-sm p-2 px-4 rounded-lg ">
+                  <div className="w-full h-full p-2 px-4 rounded-lg ">
                     <div className="w-full  border-b-2 flex flex-col gap-1 pb-2 ">
                       <div className="flex justify-between">
                         <div className="">
