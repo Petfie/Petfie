@@ -19,13 +19,11 @@ const makeTags = (personality: { [key: string]: boolean }, step: number) => {
   });
 };
 
-// type Info = {
-//   gender: "수컷" | "암컷" | "비밀";
-// };
-
 interface CardPreviewProps {
   step: number;
   frameUrl: string;
+  imgUrl: string;
+  setImgUrl: (data: string) => void;
   info: {
     name: string;
     age: string;
@@ -42,12 +40,9 @@ const genderMap = {
 };
 
 export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
-  ({ step, frameUrl, info }, ref) => {
+  ({ step, imgUrl, setImgUrl, frameUrl, info }, ref) => {
     const { name, age, gender, additionalInfo, personality } = info;
     const genderIconSrc = gender && genderMap[gender];
-
-    // image data
-    const [imageData, setImageData] = useState<string>();
 
     return (
       <>
@@ -57,26 +52,28 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             ref={ref}
           >
             {/* 유저가 업로드한 펫 이미지 */}
-            {imageData && (
+            {imgUrl && (
               <Image
                 alt="카드 이미지"
-                src={imageData}
+                src={imgUrl}
                 fill
                 // className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
                 className="object-cover rounded-lg"
               />
             )}
             {/* 유저가 선택한 카드 프레임 이미지 */}
-            <Image
-              alt="카드 프레임"
-              src={frameUrl}
-              width={step === 2 ? 236 : 198}
-              height={step === 2 ? 338 : 284}
-              className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
-              draggable="false"
-            />
+            {frameUrl && (
+              <Image
+                alt="카드 프레임"
+                src={frameUrl}
+                width={step === 2 ? 236 : 198}
+                height={step === 2 ? 338 : 284}
+                className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
+                draggable="false"
+              />
+            )}
             {/* 1단계의 업로드 이미지 버튼 */}
-            {step === 0 && <ImageUpload setImageData={setImageData} />}
+            {step === 0 && <ImageUpload setImageData={setImgUrl} />}
             {/* 펫 이름 및 펫 정보 */}
             {step !== 0 && (
               <>
