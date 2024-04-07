@@ -91,7 +91,7 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
             />
             {!isNameValid && (
               <p className="text-orange-600 absolute left-0 -bottom-6">
-                입력해주세요
+                이름을 입력해주세요
               </p>
             )}
           </div>
@@ -108,7 +108,7 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
             />
             {!isAgeValid && (
               <p className="text-orange-600 absolute left-0 -bottom-6">
-                입력해주세요
+                나이를 입력해주세요
               </p>
             )}
           </div>
@@ -151,17 +151,18 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
             </div>
             {!isGenderValid && (
               <p className="text-orange-600 absolute left-0 -bottom-6">
-                선택해주세요
+                성별을 선택해주세요
               </p>
             )}
           </div>
           <div className="flex flex-col gap-y-1.5">
-            <p>추가 정보</p>
+            <p>소개</p>
             <input
               className="border border-solid border-[#e5e5e5] p-2 rounded-lg w-full"
               type="text"
-              placeholder="정보를 입력해주세요"
+              placeholder="한 줄 소개를 작성해주세요. 인스타 계정도 좋아요."
               name="additionalInfo"
+              maxLength={30}
               onChange={changeAdditionalInfo}
             />
           </div>
