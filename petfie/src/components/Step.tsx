@@ -47,20 +47,15 @@ export default function Step() {
   const captureAreaRef = useRef<HTMLDivElement>(null);
 
   const saveAsImage = async () => {
-    try {
-      if (captureAreaRef.current) {
-        const dataUrl = await toPng(captureAreaRef.current, {
-          cacheBust: false,
-        });
+    if (captureAreaRef.current === null) return;
+    const randomNumber = Math.floor(Math.random() * 10000);
 
-        const link = document.createElement("a");
-        link.download = "petfie.png";
-        link.href = dataUrl;
-        link.click();
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    toPng(captureAreaRef.current).then((dataUrl) => {
+      const link = document.createElement("a");
+      link.download = `petfie-${randomNumber}.png`;
+      link.href = dataUrl;
+      link.click();
+    });
   };
 
   return (
