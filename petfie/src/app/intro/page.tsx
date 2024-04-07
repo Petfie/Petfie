@@ -1,9 +1,23 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
 import "./page.css";
 import { QuestionMarkCircledIcon } from "@radix-ui/react-icons";
+import Modal from "./Modal"
+import React, { useState } from "react";
 
-export default function intro() {
+export default function Intro() {
+  const [modalOpen, setModalOpen] = useState(false); 
+
+  const handleIconClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
       <div className="title-cont">
@@ -15,7 +29,12 @@ export default function intro() {
           height={36}
           />
         </h1>
-        <QuestionMarkCircledIcon width={32} height={32}/>
+        <QuestionMarkCircledIcon
+          className="modalBtn"
+          width={32} 
+          height={32} 
+          onClick={handleIconClick}
+        />
       </div>
       <h2 className="comment">반려동물과의 추억을<br/>나만의 카드를 담아보세요</h2>
       <Image
@@ -30,6 +49,7 @@ export default function intro() {
           <button className="start-button button-next">시작하기</button>
         </Link>
       </div>
+      <Modal isOpen={modalOpen} onClose={handleCloseModal} />
     </>
   );
 }
