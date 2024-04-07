@@ -20,6 +20,9 @@ const config: Config = {
           600: "#EA580C",
         },
       },
+      fontSize: {
+        xs: '10px'
+      }
     },
   },
   plugins: [],
