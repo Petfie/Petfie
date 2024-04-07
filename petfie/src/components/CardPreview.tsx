@@ -7,7 +7,6 @@ const makeTags = (personality: any, step: any) => {
   const tagArray = Object.keys(personality).filter(
     (key) => personality[key] || personality[key] === "true"
   );
-  console.log("123213213", tagArray);
   return tagArray.map((tag: any) => {
     return (
       <div
