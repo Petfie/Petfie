@@ -2,21 +2,9 @@ import { forwardRef, useState } from "react";
 import Image from "next/image";
 import ImageUpload from "@/components/ImageUpload";
 
-const genderMap = {
-  수컷: "/asset/male-icon.svg",
-  암컷: "/asset/female-icon.svg",
-  비밀: "/asset/neuter-icon.svg",
-};
-
-const genderIcon = (gender) => {
-  return;
-};
-
-const makeTags = (personality: any, step: any) => {
+const makeTags = (personality: { [key: string]: boolean }, step: number) => {
   if (!personality) return;
-  const tagArray = Object.keys(personality).filter(
-    (key) => personality[key] || personality[key] === "true"
-  );
+  const tagArray = Object.keys(personality).filter((key) => personality[key]);
   return tagArray.map((tag: any) => {
     return (
       <div
@@ -31,21 +19,32 @@ const makeTags = (personality: any, step: any) => {
   });
 };
 
-type Info = {
-  gender: "수컷" | "암컷" | "비밀";
-};
+// type Info = {
+//   gender: "수컷" | "암컷" | "비밀";
+// };
 
 interface CardPreviewProps {
   step: number;
-  imgUrl: string;
   frameUrl: string;
-  info: Info;
+  info: {
+    name: string;
+    age: string;
+    gender?: "수컷" | "암컷" | "비밀";
+    additionalInfo: string;
+    personality: { [key: string]: boolean };
+  };
 }
 
+const genderMap = {
+  수컷: "/asset/male-icon.svg",
+  암컷: "/asset/female-icon.svg",
+  비밀: "/asset/neuter-icon.svg",
+};
+
 export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
-  ({ step, imgUrl, frameUrl, info }, ref) => {
+  ({ step, frameUrl, info }, ref) => {
     const { name, age, gender, additionalInfo, personality } = info;
-    const genderIconSrc = genderMap[gender];
+    const genderIconSrc = gender && genderMap[gender];
 
     // image data
     const [imageData, setImageData] = useState<string>();
@@ -71,8 +70,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             <Image
               alt="카드 프레임"
               src={frameUrl}
-              width={step === 2 ? 316 : 198}
-              height={step === 2 ? 454 : 284}
+              width={step === 2 ? 236 : 198}
+              height={step === 2 ? 338 : 284}
               className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
               draggable="false"
             />
@@ -106,17 +105,17 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                           <span className="mr-4">나이</span>
                           {age}
                         </div>
-                        <div className="mr-1 min-w-[50px]">
+                        <div className="mr-1 min-w-[50px] flex relative">
                           <span className="mr-4">성별</span>
-                          <div className="">
-                            {genderIconSrc && (
-                              <Image
-                                alt={gender || "아이콘"}
-                                src={genderIconSrc}
-                                fill
-                              />
-                            )}
-                          </div>
+                          {genderIconSrc && (
+                            <Image
+                              alt={gender || "아이콘"}
+                              src={genderIconSrc}
+                              width={step === 2 ? 11 : 7}
+                              height={step === 2 ? 11 : 7}
+                              className="relative bottom-[1px]"
+                            />
+                          )}
                         </div>
                       </div>
                       <div>

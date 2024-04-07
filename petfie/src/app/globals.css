@@ -10,7 +10,6 @@ body {
   min-height: 100dvh;
   font-family: "GmarketSansMedium";
   background: #fff !important;
-  padding: 20px;
 }
 
 @tailwind base;

@@ -32,7 +32,7 @@ export default function InfoForm({ info, changeInfo }: Props) {
 
   const selectGender = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLInputElement;
-    changeInfo({ ...info, gender: target.value });
+    changeInfo({ ...info, gender: target.value as "수컷" | "암컷" | "비밀" });
   };
 
   const changeAdditionalInfo = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -39,7 +39,7 @@ export default function StepProgress({ currentStep, stepList }: Props) {
             )}
             {/* isStepCompleted 가 1 인 경우 */}
             {isStepCompleted(index, currentStep) === 1 && (
-              <div className="w-4 h-4 rounded-full bg-gray-300" />
+              <div className="w-4 h-4 rounded-full" />
             )}
             <span
               className={
