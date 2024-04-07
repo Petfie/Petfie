@@ -8,10 +8,6 @@ const genderMap = {
   비밀: "/asset/neuter-icon.svg",
 };
 
-const genderIcon = (gender) => {
-  return;
-};
-
 const makeTags = (personality: any, step: any) => {
   if (!personality) return;
   const tagArray = Object.keys(personality).filter(
