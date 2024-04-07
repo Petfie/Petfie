@@ -75,7 +75,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* 1단계의 업로드 이미지 버튼 */}
             {step === 0 && <ImageUpload setImageData={setImgUrl} />}
             {/* 펫 이름 및 펫 정보 */}
-            {step !== 0 && (
+            {
               <>
                 {/* 펫 이름 */}
                 {name && (
@@ -115,9 +115,9 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                           )}
                         </div>
                       </div>
-                      <div>
-                        <span className="mr-4">소개</span>
-                        {additionalInfo}
+                      <div className="flex">
+                        <span className="mr-4 min-w-5">소개</span>
+                        <p>{additionalInfo}</p>
                       </div>
                     </div>
                     <div className="w-full flex justify-between mt-2 min-h-[14px]">
@@ -129,7 +129,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                   </div>
                 </div>
               </>
-            )}
+            }
           </div>
         }
       </>
