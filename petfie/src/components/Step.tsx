@@ -8,7 +8,7 @@ import { Info } from "@/components/InfoForm.types";
 import Carousel from "@/features/Carousel";
 import { toPng } from "html-to-image";
 import StepProgress from "@/components/StepProgress";
-import './step.css';
+import "./step.css";
 
 export default function Step() {
   // step list

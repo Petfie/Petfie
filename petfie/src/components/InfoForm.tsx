@@ -28,15 +28,23 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
 
     const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
       changeInfo({ ...info, name: e.target.value });
+      if (e.target.validity.valid) {
+        setIsNameValid(true);
+      }
     };
 
     const changeAge = (e: React.ChangeEvent<HTMLInputElement>) => {
       changeInfo({ ...info, age: e.target.value });
+      if (e.target.validity.valid) {
+        setIsAgeValid(true);
+      }
     };
 
     const selectGender = (e: React.MouseEvent<HTMLDivElement>) => {
       const target = e.target as HTMLInputElement;
       changeInfo({ ...info, gender: target.value as "수컷" | "암컷" | "비밀" });
+
+      setIsGenderValid(true);
     };
 
     const changeAdditionalInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,11 +53,26 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
 
     const selectPersonality = (e: React.MouseEvent<HTMLDivElement>) => {
       const target = e.target as HTMLInputElement;
-      console.log("target", target.id);
       changeInfo({
         ...info,
         personality: { ...info.personality, [target.id]: target.checked },
       });
+    };
+
+    // test validation
+    const [isNameValid, setIsNameValid] = useState(true);
+    const validateName = () => {
+      setIsNameValid(false);
+    };
+
+    const [isAgeValid, setIsAgeValid] = useState(true);
+    const validateAge = () => {
+      setIsAgeValid(false);
+    };
+
+    const [isGenderValid, setIsGenderValid] = useState(true);
+    const validateGender = () => {
+      setIsGenderValid(false);
     };
 
     return (
@@ -61,7 +84,9 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
           placeholder="이름을 입력해주세요"
           required
           onChange={changeName}
+          onInvalid={validateName}
         />
+        {!isNameValid && <p className="text-orange-600">입력해주세요</p>}
         <p>반려동물의 나이</p>
         <input
           name="age"
@@ -69,7 +94,9 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
           placeholder="나이를 입력해주세요"
           required
           onChange={changeAge}
+          onInvalid={validateAge}
         />
+        {!isAgeValid && <p className="text-orange-600">입력해주세요</p>}
         <p>반려동물의 성별</p>
         <div onClick={selectGender}>
           <input
@@ -78,6 +105,7 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
             name="gender"
             value="수컷"
             required
+            onInvalid={validateGender}
           />
           <label htmlFor="radioMale">수컷</label>
           <input
@@ -86,6 +114,7 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
             name="gender"
             value="암컷"
             required
+            onInvalid={validateGender}
           />
           <label htmlFor="radioFemale">암컷</label>
           <input
@@ -94,8 +123,10 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
             name="gender"
             value="비밀"
             required
+            onInvalid={validateGender}
           />
           <label htmlFor="radioSecret">비밀</label>
+          {!isGenderValid && <p className="text-orange-600">선택해주세요</p>}
         </div>
         <p>추가 정보</p>
         <input
@@ -106,14 +137,9 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
         />
         <p>성격</p>
         <ul>
-          {Object.entries(personality).map(([key, value], idx) => (
+          {Object.entries(personality).map(([_, value], idx) => (
             <li key={idx}>
-              <input
-                type="checkbox"
-                id={value}
-                required
-                onClick={selectPersonality}
-              />
+              <input type="checkbox" id={value} onClick={selectPersonality} />
               <label htmlFor={value}>{value}</label>
             </li>
           ))}
