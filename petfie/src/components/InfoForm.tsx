@@ -1,58 +1,82 @@
 "use client";
 
 import { Info } from "@/components/InfoForm.types";
+import { forwardRef, useState } from "react";
 
 interface Props {
   info: Info;
   changeInfo: (info: Info) => void;
 }
-export default function InfoForm({ info, changeInfo }: Props) {
-  const personality = {
-    active: "활발함",
-    shy: "소심함",
-    affectionate: "애교쟁이",
-    "dog-like": "개냥이",
-    sensitive: "예민함",
-    sleeper: "잠꾸러기",
-    foodie: "먹보",
-    lazy: "베짱이",
-    scaredy: "겁쟁이",
-    independent: "독립적",
-    explorer: "탐험가",
-    bulldozer: "불도저",
-    nocturnal: "야행성",
-    "walk-lover": "산책왕",
-  };
+const InfoForm = forwardRef<HTMLFormElement, Props>(
+  ({ info, changeInfo }, ref) => {
+    const personality = {
+      active: "활발함",
+      shy: "소심함",
+      affectionate: "애교쟁이",
+      "dog-like": "개냥이",
+      sensitive: "예민함",
+      sleeper: "잠꾸러기",
+      foodie: "먹보",
+      lazy: "베짱이",
+      scaredy: "겁쟁이",
+      independent: "독립적",
+      explorer: "탐험가",
+      bulldozer: "불도저",
+      nocturnal: "야행성",
+      "walk-lover": "산책왕",
+    };
 
-  const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeInfo({ ...info, name: e.target.value });
-  };
+    const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+      changeInfo({ ...info, name: e.target.value });
+      if (e.target.validity.valid) {
+        setIsNameValid(true);
+      }
+    };
 
-  const changeAge = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeInfo({ ...info, age: e.target.value });
-  };
+    const changeAge = (e: React.ChangeEvent<HTMLInputElement>) => {
+      changeInfo({ ...info, age: e.target.value });
+      if (e.target.validity.valid) {
+        setIsAgeValid(true);
+      }
+    };
 
-  const selectGender = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLInputElement;
-    changeInfo({ ...info, gender: target.value as "수컷" | "암컷" | "비밀" });
-  };
+    const selectGender = (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLInputElement;
+      changeInfo({ ...info, gender: target.value as "수컷" | "암컷" | "비밀" });
 
-  const changeAdditionalInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeInfo({ ...info, additionalInfo: e.target.value });
-  };
+      setIsGenderValid(true);
+    };
 
-  const selectPersonality = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLInputElement;
-    console.log("target", target.id);
-    changeInfo({
-      ...info,
-      personality: { ...info.personality, [target.id]: target.checked },
-    });
-  };
+    const changeAdditionalInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
+      changeInfo({ ...info, additionalInfo: e.target.value });
+    };
 
-  return (
-    <>
-      <form className="info_form">
+    const selectPersonality = (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLInputElement;
+      changeInfo({
+        ...info,
+        personality: { ...info.personality, [target.id]: target.checked },
+      });
+    };
+
+    // test validation
+    const [isNameValid, setIsNameValid] = useState(true);
+    const validateName = () => {
+      setIsNameValid(false);
+    };
+
+    const [isAgeValid, setIsAgeValid] = useState(true);
+    const validateAge = () => {
+      setIsAgeValid(false);
+    };
+
+    const [isGenderValid, setIsGenderValid] = useState(true);
+    const validateGender = () => {
+      setIsGenderValid(false);
+    };
+
+    return (
+      <form className="info_form" ref={ref} id="info-form">
         <p>반려동물의 이름</p>
         <input
           name="name"
@@ -60,7 +84,9 @@ export default function InfoForm({ info, changeInfo }: Props) {
           placeholder="이름을 입력해주세요"
           required
           onChange={changeName}
+          onInvalid={validateName}
         />
+        {!isNameValid && <p className="text-orange-600">입력해주세요</p>}
         <p>반려동물의 나이</p>
         <input
           name="age"
@@ -68,7 +94,9 @@ export default function InfoForm({ info, changeInfo }: Props) {
           placeholder="나이를 입력해주세요"
           required
           onChange={changeAge}
+          onInvalid={validateAge}
         />
+        {!isAgeValid && <p className="text-orange-600">입력해주세요</p>}
         <p>반려동물의 성별</p>
         <div onClick={selectGender}>
           <input
@@ -77,6 +105,7 @@ export default function InfoForm({ info, changeInfo }: Props) {
             name="gender"
             value="수컷"
             required
+            onInvalid={validateGender}
           />
           <label htmlFor="radioMale">수컷</label>
           <input
@@ -85,6 +114,7 @@ export default function InfoForm({ info, changeInfo }: Props) {
             name="gender"
             value="암컷"
             required
+            onInvalid={validateGender}
           />
           <label htmlFor="radioFemale">암컷</label>
           <input
@@ -93,8 +123,10 @@ export default function InfoForm({ info, changeInfo }: Props) {
             name="gender"
             value="비밀"
             required
+            onInvalid={validateGender}
           />
           <label htmlFor="radioSecret">비밀</label>
+          {!isGenderValid && <p className="text-orange-600">선택해주세요</p>}
         </div>
         <p>추가 정보</p>
         <input
@@ -105,19 +137,17 @@ export default function InfoForm({ info, changeInfo }: Props) {
         />
         <p>성격</p>
         <ul>
-          {Object.entries(personality).map(([key, value], idx) => (
+          {Object.entries(personality).map(([_, value], idx) => (
             <li key={idx}>
-              <input
-                type="checkbox"
-                id={value}
-                required
-                onClick={selectPersonality}
-              />
+              <input type="checkbox" id={value} onClick={selectPersonality} />
               <label htmlFor={value}>{value}</label>
             </li>
           ))}
         </ul>
       </form>
-    </>
-  );
-}
+    );
+  }
+);
+InfoForm.displayName = "InfoForm";
+
+export default InfoForm;
