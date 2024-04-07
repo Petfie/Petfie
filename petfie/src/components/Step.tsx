@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@radix-ui/themes";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { StepDone } from "@/components/StepDone";
 import { CardPreview } from "@/components/CardPreview";
 import InfoForm from "@/components/InfoForm";
@@ -9,7 +9,7 @@ import { Info } from "@/components/InfoForm.types";
 
 export default function Step() {
   // step state
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   const increaseStep = () => {
     setStep((prevStep) => prevStep + 1);
@@ -35,6 +35,7 @@ export default function Step() {
     console.log("info", info);
   }, [info]);
 
+  // TODO: 제거하기
   // 카드 미리보기 state
   const [imgUrl, setImgUrl] = useState("/asset/animal2.jpg");
   const [frameUrl, setFrameUrl] = useState("/asset/frame6.png");

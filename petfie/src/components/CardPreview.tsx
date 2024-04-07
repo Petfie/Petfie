@@ -1,14 +1,12 @@
 import { useState } from "react";
 import Image from "next/image";
-import { Button } from "@radix-ui/themes";
-import { UploadIcon } from "@radix-ui/react-icons";
+import ImageUpload from "@/components/ImageUpload";
 
 const makeTags = (personality: any, step: any) => {
   if (!personality) return;
   const tagArray = Object.keys(personality).filter(
     (key) => personality[key] || personality[key] === "true"
   );
-  console.log("123213213", tagArray);
   return tagArray.map((tag: any) => {
     return (
       <div
@@ -40,18 +38,23 @@ export const CardPreview = ({
 
   // const [tags, setTags] = useState(personality);
 
+  // image data
+  const [imageData, setImageData] = useState<string>();
+
   return (
     <>
       {
         <div className="relative bg-gray-300 w-full h-full rounded-lg">
           {/* 유저가 업로드한 펫 이미지 */}
-          <Image
-            alt="카드 이미지"
-            src={imgUrl}
-            fill
-            // className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
-            className="object-cover rounded-lg"
-          />
+          {imageData && (
+            <Image
+              alt="카드 이미지"
+              src={imageData}
+              fill
+              // className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
+              className="object-cover rounded-lg"
+            />
+          )}
           {/* 유저가 선택한 카드 프레임 이미지 */}
           <Image
             alt="카드 프레임"
@@ -62,14 +65,7 @@ export const CardPreview = ({
             draggable="false"
           />
           {/* 1단계의 업로드 이미지 버튼 */}
-          {step === 0 && (
-            <div className="absolute w-full flex justify-center top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]">
-              <Button color="gray" variant="classic" highContrast>
-                <UploadIcon />
-                <span>Image Upload</span>
-              </Button>
-            </div>
-          )}
+          {step === 0 && <ImageUpload setImageData={setImageData} />}
           {/* 펫 이름 및 펫 정보 */}
           {step !== 0 && (
             <>

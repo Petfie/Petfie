@@ -1,11 +1,11 @@
 "use client";
+import { UploadIcon } from "@radix-ui/react-icons";
 import { Button } from "@radix-ui/themes";
-import Image from "next/image";
-import { useState } from "react";
 
-export default function ImageUpload() {
-  const [imageData, setImageData] = useState<string>();
-
+interface Props {
+  setImageData: (data: string) => void;
+}
+export default function ImageUpload({ setImageData }: Props) {
   const openFileUpload = () => {
     const fileUpload = document.querySelector(
       "input[name=file-upload]"
@@ -32,9 +32,10 @@ export default function ImageUpload() {
   };
 
   return (
-    <>
+    <div className="absolute w-full flex justify-center top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]">
       <Button onClick={openFileUpload}>
-        <h1>Image Upload</h1>
+        <UploadIcon />
+        <span>Image Upload</span>
         <input
           name="file-upload"
           style={{ display: "none" }}
@@ -42,13 +43,6 @@ export default function ImageUpload() {
           accept="image/*"
         />
       </Button>
-      {/* image data 영역 */}
-      <div>
-        <h2>Image Data</h2>
-        {imageData && (
-          <Image src={imageData} width={200} height={200} alt={"test image"} />
-        )}
-      </div>
-    </>
+    </div>
   );
 }
