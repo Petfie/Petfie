@@ -119,12 +119,17 @@ export default function Step() {
         )}
         {step === 1 && (
           <>
+<<<<<<< Updated upstream
             <button onClick={decreaseStep} className="button-prev">
               이전 단계
             </button>
             <button onClick={increaseStep} className="button-next">
               다음 단계
             </button>
+=======
+            <button  onClick={decreaseStep} className="button-prev">이전 단계</button>
+            <button onClick={increaseStep} className="button-next">다음 단계</button>
+>>>>>>> Stashed changes
           </>
         )}
         {step === 2 && (

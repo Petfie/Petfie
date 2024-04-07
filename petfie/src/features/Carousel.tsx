@@ -36,7 +36,7 @@ export default function Carousel({ changeFrame }: Props) {
       navigation={true}
       loop={true}
       centeredSlides={true}
-      className="carousel bg-gray-200 h-[262px] w-[393px]"
+      className="carousel"
       onSlideChange={handleSlideChange}
       coverflowEffect={{
         rotate: 60,
@@ -48,13 +48,13 @@ export default function Carousel({ changeFrame }: Props) {
       modules={[EffectCoverflow]}
     >
       {images.map((image, index) => (
-        <SwiperSlide key={index} className="flex justify-center items-center">
+        <SwiperSlide key={index}>
           <Image
             src={image}
             alt={`카드프레임 ${index + 1}`}
             width={106}
             height={152}
-            className="mt-[50px]"
+            className=""
             priority={false}
           />
         </SwiperSlide>
