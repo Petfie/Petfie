@@ -103,7 +103,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                         {additionalInfo}
                       </div>
                     </div>
-                    <div className="w-full flex justify-between mt-2">
+                    <div className="w-full flex justify-between mt-2 min-h-[14px]">
                       <span className="mr-4 truncate">성격</span>
                       <div className="grow grid grid-cols-3 gap-1">
                         {makeTags(personality, step)}
