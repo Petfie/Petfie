@@ -83,7 +83,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 {/* 펫 이름 */}
                 {name && (
                   <div
-                    className={`absolute top-[10%] left-[50%] translate-x-[-50%] max-w-[70%] text-white bg-black/40 backdrop-blur-sm p-2 rounded-3xl truncate text-ellipsis flex justify-center items-center ${
+                    className={`absolute top-[10%] left-[50%] translate-x-[-50%] max-w-[70%] text-white bg-black/40 blur p-2 rounded-3xl truncate text-ellipsis flex justify-center items-center ${
                       step === 2 ? "text-lg" : "text-[0.8rem]"
                     }`}
                   >
