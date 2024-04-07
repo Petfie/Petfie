@@ -25,6 +25,18 @@ export default function Step() {
 
   const goToFirstStep = () => {
     setStep(0);
+    resetCardState();
+  };
+
+  const resetCardState = () => {
+    setInfo({
+      name: "",
+      age: "",
+      additionalInfo: "",
+      personality: {},
+    });
+    setImgUrl("");
+    setFrameUrl("");
   };
 
   // Info state
@@ -45,7 +57,7 @@ export default function Step() {
   };
 
   // 카드 미리보기 state
-  const [imgUrl, setImgUrl] = useState("/asset/animal2.jpg");
+  const [imgUrl, setImgUrl] = useState("");
   const [frameUrl, setFrameUrl] = useState("/asset/카드프레임1.svg");
 
   // DOM 캡처(이미지 저장) 위한 카드 div 선택
@@ -82,6 +94,8 @@ export default function Step() {
               ref={captureAreaRef}
               step={step}
               frameUrl={frameUrl}
+              imgUrl={imgUrl}
+              setImgUrl={setImgUrl}
               info={info}
             />
           </div>
