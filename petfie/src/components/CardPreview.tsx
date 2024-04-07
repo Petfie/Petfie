@@ -70,8 +70,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             <Image
               alt="카드 프레임"
               src={frameUrl}
-              width={step === 2 ? 316 : 198}
-              height={step === 2 ? 454 : 284}
+              width={step === 2 ? 236 : 198}
+              height={step === 2 ? 338 : 284}
               className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
               draggable="false"
             />

@@ -8,6 +8,7 @@ import { Info } from "@/components/InfoForm.types";
 import Carousel from "@/features/Carousel";
 import { toPng } from "html-to-image";
 import StepProgress from "@/components/StepProgress";
+import './step.css';
 
 export default function Step() {
   // step list
@@ -69,12 +70,12 @@ export default function Step() {
       {/* Card Preview */}
       <h1 className="my-2">{step === 2 ? "완성된 카드" : "카드 미리보기"}</h1>
       <div
-        className={`w-full flex justify-center items-center min-h-[310px] rounded-lg mb-6`}
+        className={`preview_cont w-full flex justify-center items-center rounded-lg mb-6`}
       >
         {
           <div
             className={
-              step === 2 ? "w-[316px] h-[454px]" : "w-[198px] h-[284px]"
+              step === 2 ? "w-[236px] h-[338px]" : "w-[198px] h-[284px]"
             }
           >
             <CardPreview
