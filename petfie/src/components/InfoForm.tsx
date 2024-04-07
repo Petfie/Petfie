@@ -76,75 +76,112 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
     };
 
     return (
-      <form className="info_form" ref={ref} id="info-form">
-        <p>반려동물의 이름</p>
-        <input
-          name="name"
-          type="text"
-          placeholder="이름을 입력해주세요"
-          required
-          onChange={changeName}
-          onInvalid={validateName}
-        />
-        {!isNameValid && <p className="text-orange-600">입력해주세요</p>}
-        <p>반려동물의 나이</p>
-        <input
-          name="age"
-          type="number"
-          placeholder="나이를 입력해주세요"
-          required
-          onChange={changeAge}
-          onInvalid={validateAge}
-        />
-        {!isAgeValid && <p className="text-orange-600">입력해주세요</p>}
-        <p>반려동물의 성별</p>
-        <div onClick={selectGender}>
-          <input
-            type="radio"
-            id="radioMale"
-            name="gender"
-            value="수컷"
-            required
-            onInvalid={validateGender}
-          />
-          <label htmlFor="radioMale">수컷</label>
-          <input
-            type="radio"
-            id="radioFemale"
-            name="gender"
-            value="암컷"
-            required
-            onInvalid={validateGender}
-          />
-          <label htmlFor="radioFemale">암컷</label>
-          <input
-            type="radio"
-            id="radioSecret"
-            name="gender"
-            value="비밀"
-            required
-            onInvalid={validateGender}
-          />
-          <label htmlFor="radioSecret">비밀</label>
-          {!isGenderValid && <p className="text-orange-600">선택해주세요</p>}
-        </div>
-        <p>추가 정보</p>
-        <input
-          type="text"
-          placeholder="정보를 입력해주세요"
-          name="additionalInfo"
-          onChange={changeAdditionalInfo}
-        />
-        <p>성격</p>
-        <ul>
-          {Object.entries(personality).map(([_, value], idx) => (
-            <li key={idx}>
-              <input type="checkbox" id={value} onClick={selectPersonality} />
-              <label htmlFor={value}>{value}</label>
-            </li>
-          ))}
-        </ul>
-      </form>
+      <div className="w-full bg-[#fff] p-5 border border-solid border-[#e5e5e5] flex justify-start items-center rounded-lg mb-6">
+        <form className="flex flex-col gap-y-6" ref={ref} id="info-form">
+          <div className="flex flex-col gap-y-1.5 relative">
+            <p>반려동물의 이름</p>
+            <input
+              className="border border-solid border-[#e5e5e5] p-2 rounded-lg w-full"
+              name="name"
+              type="text"
+              placeholder="이름을 입력해주세요"
+              required
+              onChange={changeName}
+              onInvalid={validateName}
+            />
+            {!isNameValid && (
+              <p className="text-orange-600 absolute left-0 -bottom-6">
+                입력해주세요
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col gap-y-1.5 relative">
+            <p>반려동물의 나이</p>
+            <input
+              className="border border-solid border-[#e5e5e5] p-2 rounded-lg w-full"
+              name="age"
+              type="number"
+              placeholder="나이를 입력해주세요"
+              required
+              onChange={changeAge}
+              onInvalid={validateAge}
+            />
+            {!isAgeValid && (
+              <p className="text-orange-600 absolute left-0 -bottom-6">
+                입력해주세요
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col gap-y-1.5 relative">
+            <p>반려동물의 성별</p>
+            <div className="flex gap-x-4" onClick={selectGender}>
+              <div className="flex gap-x-1">
+                <input
+                  type="radio"
+                  id="radioMale"
+                  name="gender"
+                  value="수컷"
+                  required
+                  onInvalid={validateGender}
+                />
+                <label htmlFor="radioMale">수컷</label>
+              </div>
+              <div className="flex gap-x-1">
+                <input
+                  type="radio"
+                  id="radioFemale"
+                  name="gender"
+                  value="암컷"
+                  required
+                  onInvalid={validateGender}
+                />
+                <label htmlFor="radioFemale">암컷</label>
+              </div>
+              <div className="flex gap-x-1">
+                <input
+                  type="radio"
+                  id="radioSecret"
+                  name="gender"
+                  value="비밀"
+                  required
+                  onInvalid={validateGender}
+                />
+                <label htmlFor="radioSecret">비밀</label>
+              </div>
+            </div>
+            {!isGenderValid && (
+              <p className="text-orange-600 absolute left-0 -bottom-6">
+                선택해주세요
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col gap-y-1.5">
+            <p>추가 정보</p>
+            <input
+              className="border border-solid border-[#e5e5e5] p-2 rounded-lg w-full"
+              type="text"
+              placeholder="정보를 입력해주세요"
+              name="additionalInfo"
+              onChange={changeAdditionalInfo}
+            />
+          </div>
+          <div className="flex flex-col gap-y-1.5">
+            <p>성격</p>
+            <ul className="flex flex-wrap gap-x-7 gap-y-5">
+              {Object.entries(personality).map(([_, value], idx) => (
+                <li key={idx} className="flex gap-x-2 items-center">
+                  <input
+                    type="checkbox"
+                    id={value}
+                    onClick={selectPersonality}
+                  />
+                  <label htmlFor={value}>{value}</label>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </form>
+      </div>
     );
   }
 );
