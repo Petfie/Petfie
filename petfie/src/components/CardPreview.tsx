@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import Image from "next/image";
 import ImageUpload from "@/components/ImageUpload";
 
@@ -28,94 +28,96 @@ interface CardPreviewProps {
   info: any;
 }
 
-export const CardPreview = ({
-  step,
-  imgUrl,
-  frameUrl,
-  info,
-}: CardPreviewProps) => {
-  const { name, age, gender, additionalInfo, personality } = info;
+export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
+  ({ step, imgUrl, frameUrl, info }, ref) => {
+    const { name, age, gender, additionalInfo, personality } = info;
 
-  // const [tags, setTags] = useState(personality);
+    // const [tags, setTags] = useState(personality);
 
-  // image data
-  const [imageData, setImageData] = useState<string>();
+    // image data
+    const [imageData, setImageData] = useState<string>();
 
-  return (
-    <>
-      {
-        <div className="relative bg-gray-300 w-full h-full rounded-lg">
-          {/* 유저가 업로드한 펫 이미지 */}
-          {imageData && (
+    return (
+      <>
+        {
+          <div
+            className="relative bg-gray-300 w-full h-full rounded-lg"
+            ref={ref}
+          >
+            {/* 유저가 업로드한 펫 이미지 */}
+            {imageData && (
+              <Image
+                alt="카드 이미지"
+                src={imageData}
+                fill
+                // className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
+                className="object-cover rounded-lg"
+              />
+            )}
+            {/* 유저가 선택한 카드 프레임 이미지 */}
             <Image
-              alt="카드 이미지"
-              src={imageData}
-              fill
-              // className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
-              className="object-cover rounded-lg"
+              alt="카드 프레임"
+              src={frameUrl}
+              width={step === 2 ? 316 : 198}
+              height={step === 2 ? 454 : 284}
+              className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
+              draggable="false"
             />
-          )}
-          {/* 유저가 선택한 카드 프레임 이미지 */}
-          <Image
-            alt="카드 프레임"
-            src={frameUrl}
-            width={step === 2 ? 316 : 198}
-            height={step === 2 ? 454 : 284}
-            className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
-            draggable="false"
-          />
-          {/* 1단계의 업로드 이미지 버튼 */}
-          {step === 0 && <ImageUpload setImageData={setImageData} />}
-          {/* 펫 이름 및 펫 정보 */}
-          {step !== 0 && (
-            <>
-              {/* 펫 이름 */}
-              {name && (
+            {/* 1단계의 업로드 이미지 버튼 */}
+            {step === 0 && <ImageUpload setImageData={setImageData} />}
+            {/* 펫 이름 및 펫 정보 */}
+            {step !== 0 && (
+              <>
+                {/* 펫 이름 */}
+                {name && (
+                  <div
+                    className={`absolute top-[10%] left-[50%] translate-x-[-50%] max-w-[70%] text-white bg-black/40 backdrop-blur-sm p-2 rounded-3xl truncate text-ellipsis flex justify-center items-center ${
+                      step === 2 ? "text-lg" : "text-[0.8rem]"
+                    }`}
+                  >
+                    {name}
+                  </div>
+                )}
+                {/* 펫 정보 */}
                 <div
-                  className={`absolute top-[10%] left-[50%] translate-x-[-50%] max-w-[70%] text-white bg-black/40 backdrop-blur-sm p-2 rounded-3xl truncate text-ellipsis flex justify-center items-center ${
-                    step === 2 ? "text-lg" : "text-[0.8rem]"
+                  className={`flex flex-col items-center justify-center absolute bottom-[10px] left-[50%] translate-x-[-50%] w-[90%] bg-black/40 text-white  rounded-lg ${
+                    step === 2
+                      ? "min-h-[124px] text-xs"
+                      : "min-h-[80px] text-[0.5rem]"
                   }`}
                 >
-                  {name}
-                </div>
-              )}
-              {/* 펫 정보 */}
-              <div
-                className={`flex flex-col items-center justify-center absolute bottom-[10px] left-[50%] translate-x-[-50%] w-[90%] bg-black/40 text-white  rounded-lg ${
-                  step === 2
-                    ? "min-h-[124px] text-xs"
-                    : "min-h-[80px] text-[0.5rem]"
-                }`}
-              >
-                <div className="w-full h-full backdrop-blur-sm p-2 px-4 rounded-lg ">
-                  <div className="w-full  border-b-2 flex flex-col gap-1 pb-2 ">
-                    <div className="flex justify-between">
-                      <div className="">
-                        <span className="mr-4">나이</span>
-                        {age}
+                  <div className="w-full h-full backdrop-blur-sm p-2 px-4 rounded-lg ">
+                    <div className="w-full  border-b-2 flex flex-col gap-1 pb-2 ">
+                      <div className="flex justify-between">
+                        <div className="">
+                          <span className="mr-4">나이</span>
+                          {age}
+                        </div>
+                        <div className="mr-2">
+                          <span className="mr-4">성별</span>
+                          {gender}
+                        </div>
                       </div>
-                      <div className="mr-2">
-                        <span className="mr-4">성별</span>
-                        {gender}
+                      <div>
+                        <span className="mr-4">정보</span>
+                        {additionalInfo}
                       </div>
                     </div>
-                    <div>
-                      <span className="mr-4">정보</span>
-                      {additionalInfo}
-                    </div>
-                  </div>
-                  <div className="w-full flex justify-between mt-2">
-                    <span className="mr-4 truncate">성격</span>
-                    <div className="grow grid grid-cols-3 gap-1">
-                      {makeTags(personality, step)}
+                    <div className="w-full flex justify-between mt-2">
+                      <span className="mr-4 truncate">성격</span>
+                      <div className="grow grid grid-cols-3 gap-1">
+                        {makeTags(personality, step)}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </>
-          )}
-        </div>
-      }
-    </>
-  );
-};
+              </>
+            )}
+          </div>
+        }
+      </>
+    );
+  }
+);
+
+CardPreview.displayName = "CardPreview";

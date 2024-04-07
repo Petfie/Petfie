@@ -1,12 +1,13 @@
 "use client";
 
 import { Button } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StepDone } from "@/components/StepDone";
 import { CardPreview } from "@/components/CardPreview";
 import InfoForm from "@/components/InfoForm";
 import { Info } from "@/components/InfoForm.types";
 import Carousel from "@/features/Carousel";
+import { toPng } from "html-to-image";
 
 export default function Step() {
   // step state
@@ -40,6 +41,26 @@ export default function Step() {
   const [imgUrl, setImgUrl] = useState("/asset/animal2.jpg");
   const [frameUrl, setFrameUrl] = useState("/asset/카드프레임1.svg");
 
+  // DOM 캡처(이미지 저장) 위한 카드 div 선택
+  const captureAreaRef = useRef<HTMLDivElement>(null);
+
+  const saveAsImage = async () => {
+    try {
+      if (captureAreaRef.current) {
+        const dataUrl = await toPng(captureAreaRef.current, {
+          cacheBust: false,
+        });
+
+        const link = document.createElement("a");
+        link.download = "petfie.png";
+        link.href = dataUrl;
+        link.click();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       {/* Card Preview */}
@@ -55,6 +76,7 @@ export default function Step() {
             }
           >
             <CardPreview
+              ref={captureAreaRef}
               step={step}
               imgUrl={imgUrl}
               frameUrl={frameUrl}
@@ -67,7 +89,7 @@ export default function Step() {
       <div>
         {step === 0 && <Carousel changeFrame={setFrameUrl} />}
         {step === 1 && <InfoForm info={info} changeInfo={setInfo} />}
-        {step === 2 && <StepDone />}
+        {step === 2 && <StepDone saveAsImage={saveAsImage} />}
       </div>
 
       {/* Footer layout */}
@@ -75,7 +97,6 @@ export default function Step() {
       {step !== 2 && <Button onClick={increaseStep}>다음</Button>}
       {step === 2 && (
         <>
-          <StepDone />
           <Button onClick={goToFirstStep}>다른 카드 만들러 가기</Button>
         </>
       )}
