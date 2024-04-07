@@ -21,22 +21,23 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   return (
     <div className="modal-overlay" onClick={handleCloseModal}>
       <div className="modal" ref={modalRef}>
-      <div className="modal-header">
-        <Cross1Icon className="close" onClick={onClose}/>
-        <div className="logo-container">
-          <Image
-            src="/asset/logo.png"
-            alt="Petfie 로고 이미지"
-            width={110}
-            height={36}
-          />
+        <div className="modal-header">
+          <Cross1Icon className="close" onClick={onClose}/>
+          <div className="logo-container">
+            <Image
+              src="/asset/logo.png"
+              alt="Petfie 로고 이미지"
+              width={110}
+              height={36}
+            />
+          </div>
+          <h1>
+            <p>펫피</p>에서 카드를 만드는 방법
+          </h1>
         </div>
-        <h1>
-          <p>펫피</p>에서 카드를 만드는 방법
-        </h1>
-      </div>
-      <div className='modal-section'>
-        <div>
+
+        <div className='modal-section'>
+          <div>
             <h3>
             <Image
                src="/asset/modal1.png"
@@ -44,8 +45,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 width={24}
                 height={24}
               />
-              사진 업로드 및 템플릿 선택
-              </h3>
+              사진 업로드 및 템플릿 선택</h3>
             <p>
               사랑스러운 반려동물의 사진을 업로드 해주세요!<br />
               그리고 어울리는 템플릿을 골라 보세요.
@@ -82,6 +82,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               링크를 공유해서 나만의 카드를 마음껏 자랑해보세요!
             </p>
           </div>
+          
         </div>
       </div>
     </div>

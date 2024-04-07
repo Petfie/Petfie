@@ -83,10 +83,12 @@
 }
 
 .modal-section {
-  display: flex;
+  max-width: 750px;
   flex-direction: column;
   gap: 40px;
-}ㅇㅇ
+  align-items: center;
+  margin: 0 auto; 
+}
 
 .modal-section div {
   display: flex;
@@ -112,6 +114,7 @@
   color: #404040;
   padding-left: 32px;
   word-break: keep-all;
+  margin-bottom: 40px;
 }
 
 .close {
