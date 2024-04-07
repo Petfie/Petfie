@@ -99,7 +99,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                         </div>
                       </div>
                       <div>
-                        <span className="mr-4">정보</span>
+                        <span className="mr-4">소개</span>
                         {additionalInfo}
                       </div>
                     </div>
