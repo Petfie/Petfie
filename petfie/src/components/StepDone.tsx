@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Button, TextField } from "@radix-ui/themes";
-import { CopyIcon } from "@radix-ui/react-icons";
+import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import * as Label from "@radix-ui/react-label";
 
 export const StepDone = () => {
   // 공유하기 URL state
-  const [url, setUrl] = useState("http://~");
+  // 임시 url 사용
+  const [url] = useState("https://petfie.vercel.app/");
 
   // copy
+  const [isCopied, setIsCopied] = useState(false);
   const copyLink = () => {
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(url).then(() => {
+      setIsCopied(true);
+    });
     // TODO: add toast
   };
 
@@ -22,8 +26,14 @@ export const StepDone = () => {
           공유하기
         </Label.Root>
         <div className="flex flex-row gap-1 justify-between">
-          <input className="Input" type="text" id="copy" defaultValue={url} />
-          <CopyIcon onClick={copyLink} />
+          <input
+            className="Input"
+            type="text"
+            id="copy"
+            defaultValue={url}
+            disabled
+          />
+          {isCopied ? <CheckIcon /> : <CopyIcon onClick={copyLink} />}
         </div>
       </div>
     </div>
