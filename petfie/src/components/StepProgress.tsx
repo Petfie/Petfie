@@ -1,4 +1,3 @@
-
 import { CheckIcon } from "@radix-ui/react-icons";
 interface Props {
   currentStep: number;
@@ -29,23 +28,21 @@ export default function StepProgress({ currentStep, stepList }: Props) {
           >
             {/* isStepCompleted 가 -1 인 경우 */}
             {isStepCompleted(index, currentStep) === -1 && (
-              <div className="w-4 h-4 rounded-full flex justify-center items-center bg-orange-600">
+              <div className="w-4 h-4 rounded-full flex justify-center items-center bg-brand-orange-600">
                 <CheckIcon color="white" />
               </div>
             )}
             {/* isStepCompleted 가 0 인 경우 */}
             {isStepCompleted(index, currentStep) === 0 && (
-              <div className="w-4 h-4 rounded-full bg-orange-600">
-              </div>
+              <div className="w-4 h-4 rounded-full bg-brand-orange-600" />
             )}
             {/* isStepCompleted 가 1 인 경우 */}
             {isStepCompleted(index, currentStep) === 1 && (
-              <div className="w-4 h-4 rounded-full bg-gray-300">
-              </div>
+              <div className="w-4 h-4 rounded-full bg-gray-300"></div>
             )}
             <span
               className={
-                currentStep < index ? "text-gray-300" : "text-orange-600"
+                currentStep < index ? "text-gray-300" : "text-brand-orange-600"
               }
             >
               {step}

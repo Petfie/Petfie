@@ -48,3 +48,12 @@ export const toPng = async (node: HTMLDivElement) => {
     }, 500);
   });
 };
+
+export const downloadImage = (dataUrl: string) => {
+  const randomNumber = Math.floor(Math.random() * 10000);
+
+  const link = document.createElement("a");
+  link.download = `petfie-${randomNumber}.png`;
+  link.href = dataUrl;
+  link.click();
+};
