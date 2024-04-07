@@ -32,7 +32,7 @@ export default function ImageUpload({ setImageData }: Props) {
   };
 
   return (
-    <div className="absolute w-full flex justify-center top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] text-orange-600 text-sm">
+    <div className="absolute w-full flex justify-center top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] text-orange-600 text-sm z-50">
       <Button
         onClick={openFileUpload}
         variant="classic"

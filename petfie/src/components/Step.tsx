@@ -6,9 +6,9 @@ import { CardPreview } from "@/components/CardPreview";
 import InfoForm from "@/components/InfoForm";
 import { Info } from "@/components/InfoForm.types";
 import Carousel from "@/features/Carousel";
-import { toPng } from "html-to-image";
 import StepProgress from "@/components/StepProgress";
 import "./step.css";
+import { downloadImage, toPng } from "./htmlToImage";
 
 export default function Step() {
   // step list
@@ -65,14 +65,9 @@ export default function Step() {
 
   const saveAsImage = async () => {
     if (captureAreaRef.current === null) return;
-    const randomNumber = Math.floor(Math.random() * 10000);
 
-    toPng(captureAreaRef.current).then((dataUrl) => {
-      const link = document.createElement("a");
-      link.download = `petfie-${randomNumber}.png`;
-      link.href = dataUrl;
-      link.click();
-    });
+    const dataUrl = await toPng(captureAreaRef.current);
+    downloadImage(dataUrl);
   };
 
   return (
