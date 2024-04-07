@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import Image from "next/image";
 import ImageUpload from "@/components/ImageUpload";
 
@@ -44,12 +44,33 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
     const { name, age, gender, additionalInfo, personality } = info;
     const genderIconSrc = gender && genderMap[gender];
 
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+      const updateMousePosition = (e: MouseEvent) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      };
+
+      window.addEventListener("mousemove", updateMousePosition);
+
+      return () => window.removeEventListener("mousemove", updateMousePosition);
+    }, []);
+
+    const cardStyle = {
+      transform: `rotateX(${
+        (mousePosition.y - window.innerHeight / 2) / 20
+      }deg) rotateY(${(mousePosition.x - window.innerWidth / 2) / 20}deg)`,
+    };
+
     return (
       <>
         {
           <div
-            className="relative bg-gray-300 w-full h-full rounded-lg"
+            className={`relative bg-gray-300 w-full h-full rounded-lg 
+              ${step === 2 && "transform-gpu"}
+            `}
             ref={ref}
+            style={step === 2 ? cardStyle : {}}
           >
             {/* 유저가 업로드한 펫 이미지 */}
             {imgUrl && (
