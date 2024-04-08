@@ -10,7 +10,7 @@ const makeTags = (personality: { [key: string]: boolean }, step: number) => {
       <div
         key={tag}
         className={`border-[1px] border-neutral-100 rounded-xl px-1 flex justify-center items-center text-neutral-100 ${
-          step === 2 ? "text-[0.6rem]" : "text-[0.45rem]"
+          step === 2 ? "text-[0.6rem] py-[0.1rem]" : "text-[0.45rem]"
         }`}
       >
         {tag}
