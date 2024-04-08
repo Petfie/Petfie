@@ -84,7 +84,7 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
               className="border border-solid border-[#e5e5e5] p-2 rounded-lg w-full"
               name="name"
               type="text"
-              placeholder="이름을 입력해주세요"
+              placeholder="이름을 입력해주세요."
               required
               onChange={changeName}
               onInvalid={validateName}
@@ -101,7 +101,7 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
               className="border border-solid border-[#e5e5e5] p-2 rounded-lg w-full"
               name="age"
               type="number"
-              placeholder="나이를 입력해주세요"
+              placeholder="나이를 입력해주세요."
               required
               onChange={changeAge}
               onInvalid={validateAge}
@@ -115,43 +115,52 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
           <div className="flex flex-col gap-y-1.5 relative">
             <p>반려동물의 성별</p>
             <div className="flex gap-x-4" onClick={selectGender}>
-              <div className="flex gap-x-1">
-                <input
+              <div className="gender_radio flex gap-x-1">
+                <label htmlFor="radioMale">
+                  <input
                   type="radio"
                   id="radioMale"
                   name="gender"
                   value="수컷"
                   required
                   onInvalid={validateGender}
-                />
-                <label htmlFor="radioMale">수컷</label>
+                  />
+                  <span className="checkmark"></span>
+                  수컷
+                </label>
               </div>
-              <div className="flex gap-x-1">
-                <input
-                  type="radio"
-                  id="radioFemale"
-                  name="gender"
-                  value="암컷"
-                  required
-                  onInvalid={validateGender}
-                />
-                <label htmlFor="radioFemale">암컷</label>
+              <div className="gender_radio flex gap-x-1">
+                <label htmlFor="radioFemale">
+                  <input
+                    type="radio"
+                    id="radioFemale"
+                    name="gender"
+                    value="암컷"
+                    required
+                    onInvalid={validateGender}
+                  />
+                  <span className="checkmark"></span>
+                  암컷
+                  </label>
               </div>
-              <div className="flex gap-x-1">
-                <input
-                  type="radio"
-                  id="radioSecret"
-                  name="gender"
-                  value="비밀"
-                  required
-                  onInvalid={validateGender}
-                />
-                <label htmlFor="radioSecret">비밀</label>
+              <div className="gender_radio flex gap-x-1">
+                <label htmlFor="radioSecret">
+                  <input
+                    type="radio"
+                    id="radioSecret"
+                    name="gender"
+                    value="비밀"
+                    required
+                    onInvalid={validateGender}
+                  />
+                  <span className="checkmark"></span>
+                  비밀
+                </label>
               </div>
             </div>
             {!isGenderValid && (
               <p className="text-orange-600 absolute left-0 -bottom-6">
-                성별을 선택해주세요
+                성별을 선택해주세요.
               </p>
             )}
           </div>
@@ -160,7 +169,7 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
             <input
               className="border border-solid border-[#e5e5e5] p-2 rounded-lg w-full"
               type="text"
-              placeholder="한 줄 소개를 작성해주세요. 인스타 계정도 좋아요."
+              placeholder="소개를 작성해주세요. 인스타 계정도 좋아요."
               name="additionalInfo"
               maxLength={30}
               onChange={changeAdditionalInfo}

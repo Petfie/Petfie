@@ -12,7 +12,9 @@
   }
 
 .preview-img {
+  transform: translateX(-20px);
   width: 100%;
+  min-width: 100vw;
   height: auto;
 }
 
@@ -23,7 +25,10 @@
 }
 
 .start-button {
+  position: absolute;
+  bottom: 20px;
   box-shadow: 0px 0px 30px rgba(251, 146, 60, 0.5);
+  width: calc(100% - 40px);
 }
 
 .modalBtn {

@@ -38,7 +38,7 @@ export default function Intro() {
       <h2 className="comment">반려동물과의 추억을<br/>나만의 카드를 담아보세요</h2>
       <Image
         className="preview-img"
-        src="/asset/완성카드.png"
+        src="/asset/main_preview.png"
         alt="미리보기 이미지"
         width={200}
         height={200}
