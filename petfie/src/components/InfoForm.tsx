@@ -125,7 +125,7 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
                   required
                   onInvalid={validateGender}
                   />
-                  <span className="checkmark"></span>
+                  <span className="radio_checkmark"></span>
                   수컷
                 </label>
               </div>
@@ -139,7 +139,7 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
                     required
                     onInvalid={validateGender}
                   />
-                  <span className="checkmark"></span>
+                  <span className="radio_checkmark"></span>
                   암컷
                   </label>
               </div>
@@ -153,7 +153,7 @@ const InfoForm = forwardRef<HTMLFormElement, Props>(
                     required
                     onInvalid={validateGender}
                   />
-                  <span className="checkmark"></span>
+                  <span className="radio_checkmark"></span>
                   비밀
                 </label>
               </div>
