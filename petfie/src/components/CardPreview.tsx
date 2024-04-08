@@ -10,7 +10,7 @@ const makeTags = (personality: { [key: string]: boolean }, step: number) => {
       <div
         key={tag}
         className={`border-[1px] border-neutral-100 rounded-xl px-1 flex justify-center items-center text-neutral-100 ${
-          step === 2 ? "text-[0.6rem] py-[0.1rem]" : "text-[0.45rem]"
+          step === 2 ? "text-[0.6rem]" : "text-[0.45rem]"
         }`}
       >
         {tag}
@@ -48,7 +48,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
       <>
         {
           <div
-            className="card_preview relative w-full h-full rounded-lg"
+            className="relative w-full h-full rounded-lg card_preview"
             ref={ref}
           >
             {/* 유저가 업로드한 펫 이미지 */}
@@ -95,7 +95,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                   }`}
                 >
                   <div className="w-full h-full p-2 px-3 rounded-lg ">
-                    <div className="w-full  border-b border-neutral-300/80 flex flex-col gap-1 pb-2 ">
+                    <div className="flex flex-col w-full gap-1 pb-2 border-b border-neutral-300/80 ">
                       <div className="flex justify-between">
                         <div className="">
                           <span className="mr-3 text-[0.6rem] text-neutral-200">
@@ -131,7 +131,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                       <span className="mr-3 text-[0.6rem] text-neutral-200">
                         성격
                       </span>
-                      <div className="grow grid grid-cols-3 gap-1 text-xs">
+                      <div className="grid grid-cols-3 gap-1 text-xs grow">
                         {makeTags(personality, step)}
                       </div>
                     </div>
