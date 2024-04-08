@@ -14,12 +14,12 @@ input[type="number"] {
 
 .preview_cont {
   width: 100%;
-  background: #fff;
+  background: #a3a3a3;
   padding: 20px 0;
   border: 1px solid #e5e5e5;
 }
 .card_preview {
-  background: #a3a3a3;
+  background: #f5f5f5;
 }
 
 .preview_img {
