@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { StepDone } from "@/components/StepDone";
 import { CardPreview } from "@/components/CardPreview";
 import InfoForm from "@/components/InfoForm";
@@ -9,6 +9,7 @@ import Carousel from "@/features/Carousel";
 import StepProgress from "@/components/StepProgress";
 import "./step.css";
 import { downloadImage, toPng } from "./htmlToImage";
+import { useMobileScreen } from "@/hooks/useMobileScreen";
 
 export default function Step() {
   // step list
@@ -60,6 +61,8 @@ export default function Step() {
   const [imgUrl, setImgUrl] = useState("");
   const [frameUrl, setFrameUrl] = useState("/asset/카드프레임1.svg");
 
+  const isMobile = useMobileScreen();
+
   // DOM 캡처(이미지 저장) 위한 카드 div 선택
   const captureAreaRef = useRef<HTMLDivElement>(null);
 
@@ -67,7 +70,36 @@ export default function Step() {
     if (captureAreaRef.current === null) return;
 
     const dataUrl = await toPng(captureAreaRef.current);
-    downloadImage(dataUrl);
+
+    if (!isMobile && typeof window !== "undefined") {
+      ///url -> file 변경
+      let arr: string[] = dataUrl.split(","),
+        //  @ts-ignore
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = window.atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+
+      const file = new File([u8arr], "petfie.png", { type: mime });
+
+      const shareData = {
+        title: "제목",
+        files: [file],
+        url: document.location.origin,
+      };
+
+      if (navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+      } else {
+        alert("공유하기가 지원되지 않는 환경 입니다.");
+      }
+    } else {
+      downloadImage(dataUrl);
+    }
   };
 
   return (
