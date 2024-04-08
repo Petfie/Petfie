@@ -3,8 +3,8 @@ import { Theme } from "@radix-ui/themes";
 
 
 export const metadata = {
-  title: "Petfie",
-  description: "Build your pet's profile cards with Petfie.",
+  title: "Petfie | 반려동물을 자랑할 땐 펫피",
+  description: "카드로 만드는 반려동물과의 추억",
 };
 
 export default function RootLayout({
