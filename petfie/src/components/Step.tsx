@@ -95,7 +95,7 @@ export default function Step() {
       if (navigator.canShare && navigator.canShare(shareData)) {
         await navigator.share(shareData);
       } else {
-        alert("공유하기가 지원되지 않는 환경 입니다.");
+        downloadImage(dataUrl);
       }
     } else {
       downloadImage(dataUrl);

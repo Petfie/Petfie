@@ -3,6 +3,11 @@ h1 {
   line-height: 1.5;
 }
 
+input[type="text"],
+input[type="number"] {
+  font-size: 14px;
+}
+
 .progress_cont {
   background: #fff;
 }
@@ -56,7 +61,7 @@ h1 {
   margin-right: 8px;
 }
 .personality_checkbox input:checked + .checkmark {
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   background-color: #ea580c;
@@ -91,17 +96,17 @@ h1 {
   width: 16px;
   height: 16px;
   background: white;
-  border: 1px solid #E5E5E5;
+  border: 1px solid #e5e5e5;
   border-radius: 50%;
   margin-right: 8px;
 }
-.gender_radio input:checked + .checkmark {
-  display:flex;
+.gender_radio input:checked + .radio_checkmark {
+  display: flex;
   align-items: center;
   justify-content: center;
   border: none;
 }
-.gender_radio input:checked + .checkmark::after {
+.gender_radio input:checked + .radio_checkmark::after {
   content: "";
   display: block;
   width: 16px;
