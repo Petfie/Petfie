@@ -26,7 +26,7 @@ export const toPng = async (node: HTMLDivElement) => {
   const offscreenCanvas = canvas.transferControlToOffscreen();
   offscreenCanvas.width = width * multiple;
   offscreenCanvas.height = height * multiple;
-  const context = offscreenCanvas.getContext("2d", { alpha: false });
+  const context = offscreenCanvas.getContext("2d");
   if (context === null) return "";
 
   const img: HTMLImageElement = await createImage(svgDataUrl);

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { CheckIcon, CopyIcon, DownloadIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 
 interface StepDoneProps {
   saveAsImage: () => void;
@@ -19,6 +20,10 @@ export const StepDone = ({ saveAsImage }: StepDoneProps) => {
     });
   };
 
+  const socialClick = () => {
+    window.alert("준비 중입니다.");
+  };
+
   return (
     <div className="flex flex-col items-center pt-5 gap-5">
       <button
@@ -28,7 +33,7 @@ export const StepDone = ({ saveAsImage }: StepDoneProps) => {
         <DownloadIcon width={20} height={20} />
         카드 다운로드
       </button>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full mb-8">
         <label className="text-sm mb-2" htmlFor="copy">
           공유하기
         </label>
@@ -46,6 +51,35 @@ export const StepDone = ({ saveAsImage }: StepDoneProps) => {
               <CopyIcon onClick={copyLink} className="text-brand-orange-500" />
             )}
           </div>
+        </div>
+        <div className="flex justify-center gap-4 mt-3">
+          <Image
+            alt="instagram"
+            src={"/asset/instagram_logo.png"}
+            width={38}
+            height={38}
+            quality={90}
+            className="cursor-pointer"
+            onClick={socialClick}
+          />
+          <Image
+            alt="kakao"
+            src={"/asset/kakao_logo.png"}
+            width={38}
+            height={38}
+            quality={90}
+            className="cursor-pointer"
+            onClick={socialClick}
+          />
+          <Image
+            alt="twitter"
+            src={"/asset/twitter_logo.png"}
+            width={38}
+            height={38}
+            quality={90}
+            className="cursor-pointer"
+            onClick={socialClick}
+          />
         </div>
       </div>
     </div>

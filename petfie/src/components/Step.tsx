@@ -71,7 +71,7 @@ export default function Step() {
 
     const dataUrl = await toPng(captureAreaRef.current);
 
-    if (!isMobile && typeof window !== "undefined") {
+    if (isMobile && typeof window !== "undefined") {
       ///url -> file 변경
       let arr: string[] = dataUrl.split(","),
         //  @ts-ignore
@@ -113,9 +113,10 @@ export default function Step() {
       >
         {
           <div
-            className={
-              step === 2 ? "w-[236px] h-[338px]" : "w-[198px] h-[284px]"
-            }
+            ref={captureAreaRef}
+            className={`rounded-lg ${
+              step === 2 ? "w-[244px] h-[346px]" : "w-[206px] h-[292px]"
+            }`}
           >
             <CardPreview
               ref={captureAreaRef}
