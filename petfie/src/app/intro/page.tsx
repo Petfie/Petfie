@@ -19,7 +19,7 @@ export default function Intro() {
   };
 
   return (
-    <div className="p-[20px] min-h-[100dvh]">
+    <div className="p-[20px_20px_74px_20px] min-h-[100dvh] relative">
       <div className="title-cont">
         <h1>
           <Image
@@ -43,11 +43,9 @@ export default function Intro() {
         width={200}
         height={200}
       />
-      <div className="button-cont">
-        <Link href={"/main"}>
-          <button className="start-button button-next">시작하기</button>
-        </Link>
-      </div>
+      <Link href={"/main"} className="button-cont">
+        <button className="start-button button-next">시작하기</button>
+      </Link>
       <Modal isOpen={modalOpen} onClose={handleCloseModal} />
     </div>
   );

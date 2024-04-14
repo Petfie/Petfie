@@ -23,7 +23,7 @@ export default function RootLayout({
         {/* 내부에 업로드한 OG 이미지 URL을 사용 */}
       </head>
       <body>
-        <Theme>{children}</Theme>
+        <Theme className="main_wrap">{children}</Theme>
       </body>
     </html>
   );
