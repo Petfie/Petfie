@@ -9,8 +9,8 @@ const makeTags = (personality: { [key: string]: boolean }, step: number) => {
     return (
       <div
         key={tag}
-        className={`min-h-[14px] border-[1px] border-white rounded-xl text-white px-0  flex justify-center items-center truncate ${
-          step === 2 ? "text-xs py-[0.1rem]" : "text-[0.4rem]"
+        className={`border-[1px] border-white rounded-full whitespace-nowrap p-[0px_9px] flex justify-center items-center text-white ${
+          step === 2 ? "text-[10px]" : "text-[8px]"
         }`}
       >
         {tag}
@@ -78,7 +78,6 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 alt="카드 이미지"
                 src={imgUrl}
                 fill
-                // className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
                 className="object-cover rounded-lg"
               />
             )}
@@ -89,7 +88,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 src={frameUrl}
                 width={step === 2 ? 236 : 198}
                 height={step === 2 ? 338 : 284}
-                className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
+                className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-50"
                 draggable="false"
               />
             )}
@@ -101,8 +100,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 {/* 펫 이름 */}
                 {name && (
                   <div
-                    className={`absolute top-[10%] left-[50%] translate-x-[-50%] max-w-[70%] text-white bg-black/40 backdrop-blur-sm p-2 rounded-3xl truncate text-ellipsis flex justify-center items-center ${
-                      step === 2 ? "text-lg" : "text-[0.8rem]"
+                    className={`absolute ${step === 2 ? "top-[28px]" : "top-[22px]"} left-[50%] translate-x-[-50%] max-w-[70%] text-white bg-black/40 p-[2px_8px_2px_8px] rounded-3xl truncate text-ellipsis flex justify-center items-center ${
+                      step === 2 ? "text-[21px]" : "text-[17px]"
                     }`}
                   >
                     {name}
@@ -110,40 +109,49 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 )}
                 {/* 펫 정보 */}
                 <div
-                  className={`flex flex-col items-center justify-center absolute bottom-[10px] left-[50%] translate-x-[-50%] w-[90%] bg-black/40 text-white rounded-lg backdrop-blur-sm ${
+                  className={`absolute bottom-6 left-0 right-0 mx-auto w-[83%] bg-black/50 text-white rounded-lg ${
                     step === 2
-                      ? "min-h-[124px] text-xs"
+                      ? "min-h-[80px] text-xs"
                       : "min-h-[80px] text-[0.5rem]"
                   }`}
                 >
-                  <div className="w-full h-full p-2 px-4 rounded-lg ">
-                    <div className="w-full  border-b-2 flex flex-col gap-1 pb-2 ">
+                  <div className="w-full h-full p-[8px_11px] rounded-lg ">
+                    <div className="flex flex-col w-full gap-1 pb-[5px] border-b border-neutral-300/80 ">
                       <div className="flex justify-between">
                         <div className="">
-                          <span className="mr-4">나이</span>
-                          {age}
+                          <span className={`mr-2 whitespace-nowrap text-neutral-200 
+                      ${step === 2 ? "text-[10px]" : "text-[8px]"}`}>
+                            나이
+                          </span>
+                          <span className={`${step === 2 ? "text-[10px]" : "text-[8px]"}`}>{age}</span>
                         </div>
-                        <div className="mr-1 min-w-[50px] flex relative">
-                          <span className="mr-4">성별</span>
+                        <div className="min-w-[46px] flex relative">
+                          <div className={`mr-2 whitespace-nowrap text-neutral-200 
+                      ${step === 2 ? "text-[10px]" : "text-[8px]"}`}>
+                            성별
+                          </div>
                           {genderIconSrc && (
                             <Image
                               alt={gender || "아이콘"}
                               src={genderIconSrc}
                               width={step === 2 ? 11 : 7}
                               height={step === 2 ? 11 : 7}
-                              className="relative bottom-[1px]"
                             />
                           )}
                         </div>
                       </div>
-                      <div className="flex">
-                        <span className="mr-4 min-w-5">소개</span>
-                        <p>{additionalInfo}</p>
+                      <div className={`${step === 2 ? "text-[10px]" : "text-[8px]"} flex items-center`}>
+                        <span className={`${step === 2 ? "text-[10px]" : "text-[8px]"}`}>
+                          {additionalInfo}
+                        </span>
                       </div>
                     </div>
-                    <div className="w-full flex justify-between mt-2 min-h-[14px]">
-                      <span className="mr-4 truncate">성격</span>
-                      <div className="grow grid grid-cols-3 gap-1 text-xs">
+                    <div className="w-full flex justify-between mt-[5px] min-h-[14px]">
+                      <span className={`mr-2 whitespace-nowrap text-neutral-200 
+                      ${step === 2 ? "text-[10px]" : "text-[8px]"}`}>
+                        성격
+                      </span>
+                      <div className="grid grid-cols-3 gap-1 text-xs grow">
                         {makeTags(personality, step)}
                       </div>
                     </div>

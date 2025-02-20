@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { StepDone } from "@/components/StepDone";
 import { CardPreview } from "@/components/CardPreview";
 import InfoForm from "@/components/InfoForm";
 import { Info } from "@/components/InfoForm.types";
 import Carousel from "@/features/Carousel";
-import { toPng } from "html-to-image";
 import StepProgress from "@/components/StepProgress";
 import "./step.css";
+import { downloadImage, toPng } from "./htmlToImage";
+import { useMobileScreen } from "@/hooks/useMobileScreen";
 
 export default function Step() {
   // step list
@@ -60,19 +61,45 @@ export default function Step() {
   const [imgUrl, setImgUrl] = useState("");
   const [frameUrl, setFrameUrl] = useState("/asset/카드프레임1.svg");
 
+  const isMobile = useMobileScreen();
+
   // DOM 캡처(이미지 저장) 위한 카드 div 선택
   const captureAreaRef = useRef<HTMLDivElement>(null);
 
   const saveAsImage = async () => {
     if (captureAreaRef.current === null) return;
-    const randomNumber = Math.floor(Math.random() * 10000);
 
-    toPng(captureAreaRef.current).then((dataUrl) => {
-      const link = document.createElement("a");
-      link.download = `petfie-${randomNumber}.png`;
-      link.href = dataUrl;
-      link.click();
-    });
+    const dataUrl = await toPng(captureAreaRef.current);
+
+    if (isMobile && typeof window !== "undefined") {
+      ///url -> file 변경
+      let arr: string[] = dataUrl.split(","),
+        //  @ts-ignore
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = window.atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+
+      const file = new File([u8arr], "petfie.png", { type: mime });
+
+      const shareData = {
+        title: "제목",
+        files: [file],
+        url: document.location.origin,
+      };
+
+      if (navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+      } else {
+        downloadImage(dataUrl);
+      }
+    } else {
+      downloadImage(dataUrl);
+    }
   };
 
   return (
@@ -86,9 +113,10 @@ export default function Step() {
       >
         {
           <div
-            className={
-              step === 2 ? "w-[236px] h-[338px]" : "w-[198px] h-[284px]"
-            }
+            ref={captureAreaRef}
+            className={`rounded-lg ${
+              step === 2 ? "w-[244px] h-[346px]" : "w-[206px] h-[292px]"
+            }`}
           >
             <CardPreview
               ref={captureAreaRef}

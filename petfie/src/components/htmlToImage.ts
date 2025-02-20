@@ -26,7 +26,7 @@ export const toPng = async (node: HTMLDivElement) => {
   const offscreenCanvas = canvas.transferControlToOffscreen();
   offscreenCanvas.width = width * multiple;
   offscreenCanvas.height = height * multiple;
-  const context = offscreenCanvas.getContext("2d", { alpha: false });
+  const context = offscreenCanvas.getContext("2d");
   if (context === null) return "";
 
   const img: HTMLImageElement = await createImage(svgDataUrl);
@@ -47,4 +47,13 @@ export const toPng = async (node: HTMLDivElement) => {
       resolve(url);
     }, 500);
   });
+};
+
+export const downloadImage = (dataUrl: string) => {
+  const randomNumber = Math.floor(Math.random() * 10000);
+
+  const link = document.createElement("a");
+  link.download = `petfie-${randomNumber}.png`;
+  link.href = dataUrl;
+  link.click();
 };

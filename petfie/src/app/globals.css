@@ -8,7 +8,7 @@
 body {
   min-height: 100dvh;
   font-family: "Pretendard-Regular";
-  background: #fff !important;
+  background: #e5e5e5 !important;
 }
 
 @tailwind base;
@@ -40,6 +40,12 @@ body {
   }
 }
 
+.main_wrap {
+  max-width: 393px;
+  background:#fff;  
+  margin: 0 auto;
+}
+
 .swiper {
   display: flex;
   align-items: center;
@@ -54,16 +60,16 @@ body {
   justify-content: center;
 }
 
+.main-wrap:has(.button-cont) {
+  position: relative;
+}
 .button-cont {
+  position: absolute;
+  bottom: 20px;
   display: flex;
   align-items: center;
   gap: 12px;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.button-cont a {
-  width: 100%;
+  width: calc(100% - 40px);
 }
 
 .button-prev,

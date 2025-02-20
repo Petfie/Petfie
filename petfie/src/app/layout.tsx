@@ -3,8 +3,8 @@ import { Theme } from "@radix-ui/themes";
 
 
 export const metadata = {
-  title: "Petfie",
-  description: "Build your pet's profile cards with Petfie.",
+  title: "Petfie | 반려동물을 자랑할 땐 펫피",
+  description: "카드로 만드는 반려동물과의 추억",
 };
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
         {/* 내부에 업로드한 OG 이미지 URL을 사용 */}
       </head>
       <body>
-        <Theme>{children}</Theme>
+        <Theme className="main_wrap">{children}</Theme>
       </body>
     </html>
   );
